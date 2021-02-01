@@ -11,6 +11,10 @@
 
 - Microsoft Visual Studio 2017
 
+## Demo
+
+Run Demo project for Online SecurePay with BrainTree demo.
+
 ## Installation
 ```Nuget Package Manager
 
@@ -18,7 +22,7 @@
 
 ## Usage
 
-Please see [examples](https://github.com/yuansfer/yuansfer-java-sdk/tree/master/src/test/java)
+Please see [examples](https://github.com/yuansfer/yuansfer-csharp-sdk/tree/master/Test/testsa)
 
 ### 1. Init
 ```c#
