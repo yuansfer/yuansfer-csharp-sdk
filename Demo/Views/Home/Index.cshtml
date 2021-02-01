@@ -1,0 +1,643 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!--jquery为了调用服务端获取token-->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.2.1/jquery.min.js" crossorigin="anonymous"></script>
+    <script src="https://js.braintreegateway.com/web/3.71.0/js/client.js"></script>
+    <script src="https://js.braintreegateway.com/web/3.71.0/js/hosted-fields.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <title>Payment</title>
+    <style>
+        body {
+            background-color: #efecec;
+        }
+
+        button {
+            width: 97px;
+            height: 40px;
+            padding: 10px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #47A2FF;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .loading {
+            margin: 20% auto;
+            text-align: center;
+            border: 16px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 16px solid #3498db;
+            width: 120px;
+            height: 120px;
+            -webkit-animation: spin 2s linear infinite;
+            animation: spin 2s linear infinite;
+            z-index: 1000;
+            display: none;
+        }
+
+        @@-webkit-keyframes spin {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        @@keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .main {
+            margin: 50px auto;
+            width: 90%;
+            max-width: 800px;
+            background-color: #fff;
+            padding: 10px 20px;
+            min-height: 500px;
+            border-radius: 10px;
+        }
+        /*.btn{width:100%;text-align: center;display: none;}*/
+        /*hosted field*/
+        body {
+            background-color: #fff;
+            padding: 15px;
+        }
+
+        .toast {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 9999;
+        }
+
+        .bootstrap-basic {
+            background: white;
+        }
+
+        /* Braintree Hosted Fields styling classes*/
+        .braintree-hosted-fields-focused {
+            color: #495057;
+            background-color: #fff;
+            border-color: #80bdff;
+            outline: 0;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+
+            .braintree-hosted-fields-focused.is-invalid {
+                border-color: #dc3545;
+                box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+            }
+
+        .row {
+            margin-bottom: 40px;
+        }
+        .alert-fixed {
+            position: fixed;
+            top: 10px;
+            left: 50%;
+            width: 10%;
+            z-index: 9999;
+            border-radius: 0px;
+            padding: 5px;
+        }
+    </style>
+
+</head>
+<body>
+
+    <input type="hidden" name="_token" id="_token" value='@ViewBag.res.authorization' />
+    <input type="hidden" name="_submitUrl" id="_submitUrl" value="http://localhost:17764/api/homeapi/process" />
+    <input type="hidden" name="_amt" id="_amt" value='@ViewBag.request.amount' />
+    <input type="hidden" name="_cur" id="_cur" value='@ViewBag.request.currency' />
+    <input type="hidden" name="_intent" id="_intent" value='@ViewBag.res.intent' />
+    <input type="hidden" name="_flow" id="_flow" value='@ViewBag.res.flow' />
+    <input type="hidden" name="_transactionNo" id="_transactionNo" value='@ViewBag.res.transactionNo' />
+    <input type="hidden" name="_vendor" id="_vendor" value='@ViewBag.request.vendor' />
+
+    <div class="alert-primary alert-fixed" style="text-align: center; display: none;" role="alert">
+        <i class="fa fa-check-circle-o" aria-hidden="true" style="padding: 0 5px;"></i>Apply successfully!
+    </div>
+    <div class="loading" id="loading"></div>
+    <div class="main" id="main">
+        <div class="info">
+            <p>Transaction No: @ViewBag.res.transactionNo</p>
+            <p>Amount: @ViewBag.request.amount</p>
+            <p>Currency: @ViewBag.request.currency</p>
+        </div>
+        <div class="bootstrap-basic">
+            <form class="needs-validation" novalidate="">
+
+                <div class="row">
+                    <div class="col-sm-3 mb-3">
+                        <label for="first-name">First Name</label>
+                        <input class="form-control" id="first-name">
+                        <!--                    <small class="text-muted">First name as displayed on card</small>-->
+                        <div class="invalid-feedback">
+                            First Name is required
+                        </div>
+                    </div>
+                    <div class="col-sm-3 mb-3">
+                        <label for="last-name">Last Name</label>
+                        <input class="form-control" id="last-name">
+                        <!--                    <small class="text-muted">Last name as displayed on card</small>-->
+                        <div class="invalid-feedback">
+                            Last Name is required
+                        </div>
+                    </div>
+                    <div class="col-sm-3 mb-3">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="you@example.com">
+                        <div class="invalid-feedback">
+                            Please enter a valid email
+                        </div>
+                    </div>
+                    <div class="col-sm-3 mb-3">
+                        <label for="address">Address</label>
+                        <input class="form-control" id="address">
+                        <div class="invalid-feedback">
+                            Please enter address.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3 mb-3">
+                        <label for="cc-number">Credit card number</label>
+                        <div class="form-control" id="cc-number"></div>
+                        <div class="invalid-feedback">
+                            Credit card number is required
+                        </div>
+                    </div>
+                    <div class="col-sm-3 mb-3">
+                        <label for="cc-expiration">Expiration</label>
+                        <div class="form-control" id="cc-expiration"></div>
+                        <div class="invalid-feedback">
+                            Expiration date required
+                        </div>
+                    </div>
+                    <div class="col-sm-3 mb-3">
+                        <label for="cc-expiration">CVV</label>
+                        <div class="form-control" id="cc-cvv"></div>
+                        <div class="invalid-feedback">
+                            Security code required
+                        </div>
+                    </div>
+                    <div class="col-sm-3 mb-3">
+                        <label for="postal-code">Post Code</label>
+                        <input class="form-control" id="postal-code">
+                        <div class="invalid-feedback">
+                            Please enter postal code.
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="mb-4">
+                <div class="text-center">
+                    <!--                <button class="btn btn-primary btn-lg" type="submit">Pay with <span id="card-brand">Card</span></button>-->
+                    <button class="btn btn-primary btn-lg" type="submit">Pay</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // 数据
+        let curPaymentMethod = '';
+        const paymentMethods = {
+            'CreditCard': 'credit_card',
+            'PayPalAccount': 'paypal_account',
+            'VenmoAccount': 'venmo_account',
+            'ApplePayCard': 'apple_pay_card',
+            'AndroidPayCard': 'android_pay_card', //google pay
+        }
+        const token = document.getElementById('_token').value;
+        const amount = document.getElementById('_amt').value;
+        const intent = document.getElementById('_intent').value;
+        const currency = document.getElementById('_cur').value;
+        const transactionNo = document.getElementById('_transactionNo').value;
+        const url = document.getElementById("_submitUrl").value;
+        const vendor = document.getElementById("_vendor").value;
+
+        //方法
+
+        function ajaxObject() {
+            let xmlHttp;
+            try {
+                // Firefox, Opera 8.0+, Safari
+                xmlHttp = new XMLHttpRequest();
+            }
+            catch (e) {
+                // Internet Explorer
+                try {
+                    xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
+                } catch (e) {
+                    try {
+                        xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+                    } catch (e) {
+                        alert("您的浏览器不支持AJAX！");
+                        return false;
+                    }
+                }
+            }
+            return xmlHttp;
+        }
+
+        function ajaxPost(url, data, fnSucceed) {
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: data,
+                contentType: "application/x-www-form-urlencoded",
+                dataType: "json",
+                success: function (data) {
+                    console.log("success");
+                    fnSucceed(data);
+                },
+                error: function (data) {
+                    console.log("error");
+                },
+            })
+
+
+        }
+
+        function getVendor() {
+            // 根据vendor 配置braintree 的支付渠道
+            let curVendor = null;
+            switch (vendor) {
+                case 'paypal':
+                    curVendor = {
+                        paypal: {
+                            flow: 'checkout',
+                            amount: amount,
+                            currency: currency
+                        },
+                        // paypalCredit: {
+                        //     flow: 'checkout',
+                        //     amount: amount,
+                        //     currency: currency
+                        // },
+                    };
+                    break
+                case 'venmo':
+                    curVendor = {
+                        venmo: { // 只会在移动端出现
+                            allowNewBrowserTab: false
+                        }
+                    };
+                    break
+                case 'googlepay':
+                    curVendor = {
+                        googlePay: {
+                            googlePayVersion: 2,
+                            merchantId: 'merchant-id-from-google',
+                            transactionInfo: {
+                                totalPriceStatus: 'FINAL',
+                                totalPrice: amount,
+                                currencyCode: currency
+                            },
+                            allowedPaymentMethods: [{
+                                type: 'CARD',
+                                parameters: {
+                                    // We recommend collecting and passing billing address information with all Google Pay
+                                    // transactions as a best practice.
+                                    billingAddressRequired: true,
+                                    billingAddressParameters: {
+                                        format: 'FULL'
+                                    }
+                                }
+                            }]
+                        },
+                    };
+                    break
+                case 'applepay':
+                    curVendor = {
+                        applePay: {
+                            displayName: 'Merchant Name',
+                            paymentRequest: {
+                                label: 'Localized Name',
+                                currencyCode: '',
+                                merchantCapabilities: '',
+                                total: amount
+                            }
+                        },
+                    };
+                    break
+                case 'creditcard':
+                    break
+                default:
+                    console.log('vendor is: ', vendor);
+            }
+            return curVendor
+        }
+
+        function handleIdElementStyle(id, attr, val) {
+            const el = document.getElementById(id);
+            if (el) {
+                el.style[attr] = val;
+            }
+        }
+
+        function initClient() {
+            const curVendor = getVendor();
+            const options = {
+                authorization: token,
+                container: '#dropin-container',
+                ...curVendor
+            };
+            console.log('options', options);
+
+            var form = $('form');
+
+            braintree.client.create({
+                authorization: token,
+            }, function (err, clientInstance) {
+                if (err) {
+                    console.error(err);
+                    alert('clientInstance: ' + JSON.stringify(err));
+                    return;
+                }
+
+                braintree.hostedFields.create({
+                    client: clientInstance,
+                    styles: {
+                        input: {
+                            // change input styles to match
+                            // bootstrap styles
+                            'font-size': '1rem',
+                            color: '#495057'
+                        }
+                    },
+                    fields: {
+                        // cardholderName: {
+                        //     selector: '#cc-name',
+                        //     placeholder: 'Name as it appears on your card'
+                        // },
+                        number: {
+                            selector: '#cc-number',
+                            placeholder: '4111 1111 1111 1111'
+                        },
+                        cvv: {
+                            selector: '#cc-cvv',
+                            placeholder: '123'
+                        },
+                        expirationDate: {
+                            selector: '#cc-expiration',
+                            placeholder: 'MM / YYYY'
+                        }
+                    }
+                }, function (err, hostedFieldsInstance) {
+                    if (err) {
+                        console.error('hostedFieldsInstance: ' + err);
+                        return;
+                    }
+                    function createInputChangeEventListener(element) {
+                        return function () {
+                            validateInput(element);
+                        }
+                    }
+
+                    function setValidityClasses(element, validity) {
+                        if (validity) {
+                            element.removeClass('is-invalid');
+                            element.addClass('is-valid');
+                        } else {
+                            element.addClass('is-invalid');
+                            element.removeClass('is-valid');
+                        }
+                    }
+
+                    function validateInput(element) {
+                        // very basic validation, if the
+                        // fields are empty, mark them
+                        // as invalid, if not, mark them
+                        // as valid
+
+                        if (!element.val().trim()) {
+                            setValidityClasses(element, false);
+
+                            return false;
+                        }
+
+                        setValidityClasses(element, true);
+
+                        return true;
+                    }
+
+                    function validateEmail() {
+                        var baseValidity = validateInput(email);
+
+                        if (!baseValidity) {
+                            return false;
+                        }
+
+                        if (email.val().indexOf("@@") === -1) {
+                            setValidityClasses(email, false);
+                            return false;
+                        }
+
+                        setValidityClasses(email, true);
+                        return true;
+                    }
+
+                    // var ccName = $('#cc-name');
+                    var firstName = $('#first-name');
+                    var lastName = $('#last-name');
+                    var address = $('#address');
+                    var postalCode = $('#postal-code');
+                    var email = $('#email');
+
+                    // ccName.on('change', function () {
+                    //     validateInput(ccName);
+                    // });
+                    firstName.on('change', function () {
+                        validateInput(firstName);
+                    });
+                    lastName.on('change', function () {
+                        validateInput(lastName);
+                    });
+                    address.on('change', function () {
+                        validateInput(address);
+                    });
+                    postalCode.on('change', function () {
+                        validateInput(postalCode);
+                    });
+                    email.on('change', validateEmail);
+
+
+                    hostedFieldsInstance.on('validityChange', function (event) {
+                        var field = event.fields[event.emittedBy];
+
+                        // Remove any previously applied error or warning classes
+                        $(field.container).removeClass('is-valid');
+                        $(field.container).removeClass('is-invalid');
+
+                        if (field.isValid) {
+                            $(field.container).addClass('is-valid');
+                        } else if (field.isPotentiallyValid) {
+                            // skip adding classes if the field is
+                            // not valid, but is potentially valid
+                        } else {
+                            $(field.container).addClass('is-invalid');
+                        }
+                    });
+
+                    hostedFieldsInstance.on('cardTypeChange', function (event) {
+                        var cardBrand = $('#card-brand');
+                        var cvvLabel = $('[for="cc-cvv"]');
+
+                        if (event.cards.length === 1) {
+                            var card = event.cards[0];
+
+                            // change pay button to specify the type of card
+                            // being used
+                            cardBrand.text(card.niceType);
+                            // update the security code label
+                            cvvLabel.text(card.code.name);
+                        } else {
+                            // reset to defaults
+                            cardBrand.text('Card');
+                            cvvLabel.text('CVV');
+                        }
+                    });
+
+                    form.submit(function (event) {
+                        event.preventDefault();
+                        //显示loading
+                        handleIdElementStyle('loading', 'display', 'block');
+
+                        var formIsInvalid = false;
+                        var state = hostedFieldsInstance.getState();
+
+                        // perform validations on the non-Hosted Fields
+                        // inputs
+                        if (!validateEmail()) {
+                            formIsInvalid = true;
+                        }
+
+                        // Loop through the Hosted Fields and check
+                        // for validity, apply the is-invalid class
+                        // to the field container if invalid
+                        Object.keys(state.fields).forEach(function (field) {
+                            if (!state.fields[field].isValid) {
+                                $(state.fields[field].container).addClass('is-invalid');
+                                formIsInvalid = true;
+                            }
+                        });
+
+                        if (formIsInvalid) {
+                            // skip tokenization request if any fields are invalid
+                            //隐藏loading
+                            handleIdElementStyle('loading', 'display', 'none');
+                            return;
+                        }
+                        const firstName = document.getElementById('first-name').value;
+                        const lastName = document.getElementById('last-name').value;
+                        const streetAddress = document.getElementById('address').value;
+                        const postalCode = document.getElementById('postal-code').value;
+                        const email = document.getElementById('email').value;
+                        const tokenizeOption = {
+                            billingAddress: {
+                                firstName: firstName,
+                                lastName: lastName,
+                                // company: 'Company',
+                                streetAddress: streetAddress,
+                                // extendedAddress: 'Unit 1',
+                                // passing just one of the country options is sufficient to
+                                // associate the card details with a particular country
+                                // valid country names and codes can be found here:
+                                // https://developers.braintreepayments.com/reference/general/countries/ruby#list-of-countries
+                                // countryName: 'United States',
+                                // countryCodeAlpha2: 'US',
+                                // countryCodeAlpha3: 'USA',
+                                // countryCodeNumeric: '840'
+                            }
+                        };
+                        hostedFieldsInstance.tokenize(tokenizeOption, function (err, payload) {
+                            if (err) {
+                                console.error(err);
+                                alert('payload: ' + JSON.stringify(err));
+                                //隐藏loading
+                                handleIdElementStyle('loading', 'display', 'none');
+                                return;
+                            }
+
+                            // This is where you would submit payload.nonce to your server
+                            // $('.toast').toast('show');
+
+
+                            // you can either send the form values with the payment
+                            // method nonce via an ajax request to your server,
+                            // or add the payment method nonce to a hidden inpiut
+                            // on your form and submit the form programatically
+                            // $('#payment-method-nonce').val(payload.nonce);
+                            // form.submit()
+
+                            // 通过payload来给curPaymentMethod赋值
+                            curPaymentMethod = paymentMethods[payload.type];
+                            // Submit payload.nonce to your server
+                            const params = "paymentMethodNonce=" + payload.nonce + "&transactionNo=" + transactionNo +
+                                "&paymentMethod=" + curPaymentMethod + "&firstName=" + firstName + "&lastName=" +
+                                lastName + "&addressLine1=" + streetAddress + "&postalCode=" + postalCode + "&email=" + email;
+                            // "&outerCallId="+ outerCallId+;
+                            ajaxPost(url, params, function (data) {
+                                const result = data;
+                                if ("success" === result.result.status) {
+                                    //隐藏loading
+                                    handleIdElementStyle('loading', 'display', 'none');
+
+                                    $('.alert-primary').show(500);
+                                    setTimeout(function () {
+                                        // handleIdElementStyle('main','display','block');
+                                        window.location.href = "";
+                                    }, 1500);
+                                } else {
+                                    // document.getElementById('prompt').style.display='none';
+                                    // parent.document.getElementById('showOtherswaringText').innerHTML=result.ret_msg;
+                                    // parent.document.getElementById('showOtherswaring').style.display='block';
+                                    //隐藏loading
+                                    handleIdElementStyle('loading', 'display', 'none');
+                                    handleIdElementStyle('main', 'display', 'block');
+                                    alert(result.ret_msg)
+                                    location.reload();
+                                }
+                            })
+                        });
+                    });
+                });
+            });
+
+        }
+        //=====================start project=======================
+        //
+        initClient()
+
+
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</body>
+</html>
