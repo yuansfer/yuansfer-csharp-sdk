@@ -5,24 +5,20 @@
 
 ## Requirements
 
-- .NET Framework >= 4.7.2
+- .NETCoreApp >=2.1
 
 ## IDE
 
 - Microsoft Visual Studio 2017
 
-## Demo
-
-Run Demo project for Online SecurePay with BrainTree demo.
-
 ## Installation
 ```Nuget Package Manager
-
+PM > Install-Package yuansfer-payment -Version 1.0.1
 ```
 
 ## Usage
 
-Please see [examples](https://github.com/yuansfer/yuansfer-csharp-sdk/tree/master/Test/testsa)
+Please see [examples](https://github.com/yuansfer/yuansfer-csharp-sdk/tree/master/Test/tests)
 
 ### 1. Init
 ```c#
