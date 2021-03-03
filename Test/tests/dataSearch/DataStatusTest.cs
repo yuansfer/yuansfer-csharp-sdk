@@ -23,6 +23,7 @@ namespace Yuansfer_SDK.tests.dataSearch
             request.paymentDate = paymentDate;
 
             DataStatusResponse response = client.execute(request);
+            Console.Write(JObject.FromObject(response));
             Assert.AreEqual("000100", response.retCode);
         }
     }

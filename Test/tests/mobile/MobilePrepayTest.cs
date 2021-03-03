@@ -5,6 +5,7 @@ using Yuansfer_SDK.tests.common;
 using Yuansfer_SDK.src.request.mobile;
 using Yuansfer_SDK.src.response.mobile;
 using Newtonsoft.Json.Linq;
+using System;
 
 namespace Yuansfer_SDK.tests.mobile
 {
@@ -23,12 +24,13 @@ namespace Yuansfer_SDK.tests.mobile
             request.settleCurrency = "USD";
             request.vendor = "venmo";
             request.terminal = "ONLINE";
-            request.reference = "297553630266972227470";
+            request.reference = DateTime.Now.ToString();
             request.ipnUrl = "http://zk-tys.yunkeguan.com/ttest/test";
             request.description = "Test for description";
             request.note = "Test for note";
 
             MobilePrepayResponse response = client.execute(request);
+            Console.Write(JObject.FromObject(response));
             Assert.AreEqual("000100", response.retCode);
         }
     }

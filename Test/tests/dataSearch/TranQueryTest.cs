@@ -5,6 +5,7 @@ using Yuansfer_SDK.tests.common;
 using Yuansfer_SDK.src.request.dataSearch;
 using Yuansfer_SDK.src.response.dataSearch;
 using Newtonsoft.Json.Linq;
+using System;
 
 namespace Yuansfer_SDK.tests.dataSearch
 {
@@ -21,6 +22,7 @@ namespace Yuansfer_SDK.tests.dataSearch
             request.reference = "297553630266977470";
 
             TranQueryResponse response = client.execute(request);
+            Console.Write(JObject.FromObject(response));
             Assert.AreEqual("000100", response.retCode);
         }
     }

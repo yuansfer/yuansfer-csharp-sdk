@@ -5,6 +5,7 @@ using Yuansfer_SDK.tests.common;
 using Yuansfer_SDK.src.request.online;
 using Yuansfer_SDK.src.response.online;
 using Newtonsoft.Json.Linq;
+using System;
 
 namespace Yuansfer_SDK.tests.online
 {
@@ -26,6 +27,7 @@ namespace Yuansfer_SDK.tests.online
             request.ipnUrl = "http://zk-tys.yunkeguan.com/ttest/test";
 
             RecurringPayResponse response = client.execute(request);
+            Console.Write(JObject.FromObject(response));
             Assert.AreEqual("000100", response.retCode);
         }
     }

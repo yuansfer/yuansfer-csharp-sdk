@@ -22,19 +22,23 @@ namespace Yuansfer_SDK.tests.online
         [TestMethod]
         public void Test1()
         {
-            request.amount = "1.00";
+            request.amount = "0.10";
             request.currency = "USD";
             request.settleCurrency = "USD";
-            request.vendor = "creditcard";
-            request.terminal = "YIP";
-            request.creditType = "yip";
-            request.reference = "9245bd5e21d63e45833b1c4baadb7e7c83";
-            request.ipnUrl = "https://yuansferdev.com/callback";
+            request.vendor = "paypal";
+            request.terminal = "APP";
+            request.reference = DateTime.Now.ToString();
+            request.ipnUrl = "https://helphalf.net/test/ipn";
+            request.callbackUrl = "https://helphalf.net/test?status={status}&transactionNo={transactionNo}&amount={amount}";
             request.description = "9245bd5e21d63e45833b1c4bdb7e7c83";
             request.note = "9245bd5e21d63e45833b1c4bdb7e7c83";
+            item.Add("goods_name", "balance");
+            item.Add("quantity", "1");
+            goods.Add(item);
+            request.goodsInfo = goods.ToString();
 
             OnlineSecurepayResponse response = client.execute(request);
-            Console.Write(response);
+            Console.Write(JObject.FromObject(response));
             Assert.AreEqual("000100", response.retCode);
         }
     }

@@ -23,6 +23,7 @@ namespace Yuansfer_SDK.tests.dataSearch
             request.startDate = DateTime.Now.AddDays(-14).ToString("yyyyMMdd");
 
             WithdrawalListResponse response = client.execute(request);
+            Console.Write(JObject.FromObject(response));
             Assert.AreEqual("000100", response.retCode);
         }
     }

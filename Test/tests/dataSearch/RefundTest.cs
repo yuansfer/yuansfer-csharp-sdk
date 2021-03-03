@@ -5,6 +5,7 @@ using Yuansfer_SDK.tests.common;
 using Yuansfer_SDK.src.request.dataSearch;
 using Yuansfer_SDK.src.response.dataSearch;
 using Newtonsoft.Json.Linq;
+using System;
 
 namespace Yuansfer_SDK.tests.dataSearch
 {
@@ -18,12 +19,13 @@ namespace Yuansfer_SDK.tests.dataSearch
         [TestMethod]
         public void Test1()
         {
-            request.refundAmount = "1.11";
+            request.refundAmount = "10";
             request.currency = "USD";
             request.settleCurrency = "USD";
-            request.reference = "297553630266977470";
+            request.transactionNo = "297553650447943325";
 
             RefundResponse response = client.execute(request);
+            Console.Write(JObject.FromObject(response));
             Assert.AreEqual("000100", response.retCode);
         }
     }

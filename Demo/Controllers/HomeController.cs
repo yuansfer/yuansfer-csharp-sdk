@@ -32,12 +32,11 @@ namespace Yuansfer.Controllers
             OnlineSecurepayRequest request = new OnlineSecurepayRequest();
 
             Random random = new System.Random();
-            request.amount = "1.00";
+            request.amount = "0.01";
             request.currency = "USD";
             request.settleCurrency = "USD";
-            request.vendor = "creditcard";
+            request.vendor = "venmo";
             request.terminal = "YIP";
-            request.creditType = "yip";
             request.reference = random.Next().ToString();
             request.ipnUrl = "https://yuansferdev.com/callback";
             request.description = "9245bd5e21d63e45833b1c4bdb7e7c83";

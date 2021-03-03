@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-
+using System;
 using Yuansfer_SDK.src.client;
 using Yuansfer_SDK.tests.common;
 using Yuansfer_SDK.src.request.online;
@@ -25,6 +25,7 @@ namespace Yuansfer_SDK.tests.online
             request.autoRedirectUrl = "http://zk-tys.yunkeguan.com/ttest/test2?status={status}";
             request.customerBelongsTo = "GCASH";
             RecurringConsultResponse response = client.execute(request);
+            Console.Write(JObject.FromObject(response));
             Assert.AreEqual("000100", response.retCode);
         }
     }

@@ -7,6 +7,7 @@ using Yuansfer_SDK.src.response.online;
 using Newtonsoft.Json.Linq;
 using Yuansfer_SDK.src.config;
 using Yuansfer_SDK.src.enums;
+using System;
 
 namespace Yuansfer_SDK.tests.online
 {
@@ -23,6 +24,7 @@ namespace Yuansfer_SDK.tests.online
             request.autoDebitNo = "390685905827682866";
             request.grantType = "AUTHORIZATION_CODE";
             RecurringApplyTokenResponse response = client.execute(request);
+            Console.Write(JObject.FromObject(response));
             Assert.AreEqual("000100", response.retCode);
         }
 

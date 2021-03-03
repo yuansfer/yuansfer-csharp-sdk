@@ -5,6 +5,7 @@ using Yuansfer_SDK.tests.common;
 using Yuansfer_SDK.src.request.offline;
 using Yuansfer_SDK.src.response.offline;
 using Newtonsoft.Json.Linq;
+using System;
 
 namespace Yuansfer_SDK.tests.offline
 {
@@ -22,10 +23,13 @@ namespace Yuansfer_SDK.tests.offline
             request.currency = "USD";
             request.settleCurrency = "USD";
             request.vendor = "wechatpay";
-            request.reference = "297553630266977as474";
+            request.reference = DateTime.Now.ToString();
             request.ipnUrl = "http://zk-tys.yunkeguan.com/ttest/test";
+            request.needQrcode = "true";
+            request.timeout = 120;
 
             InstoreCreateTranQrcodeResponse response = client.execute(request);
+            Console.Write(JObject.FromObject(response));
             Assert.AreEqual("000100", response.retCode);
         }
     }

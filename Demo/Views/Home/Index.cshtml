@@ -11,6 +11,8 @@
     <script src="https://js.braintreegateway.com/web/3.71.0/js/client.js"></script>
     <script src="https://js.braintreegateway.com/web/3.71.0/js/hosted-fields.js"></script>
 
+    <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>-->
+    <script src="//geodata.solutions/includes/countrystatecity.js"></script>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
@@ -148,8 +150,108 @@
         </div>
         <div class="bootstrap-basic">
             <form class="needs-validation" novalidate="">
-
                 <div class="row">
+                    <div class="form-item col-sm-12 mb-3 is-required">
+                      <label for="first-name">First Name</label>
+                      <input class="form-control" id="first-name">
+                      <!--                    <small class="text-muted">First name as displayed on card</small>-->
+                      <div class="invalid-feedback">
+                        First Name is required
+                      </div>
+                    </div>
+                    <div class="form-item col-sm-12 mb-3 is-required">
+                      <label for="last-name">Last Name</label>
+                      <input class="form-control" id="last-name">
+                      <!--                    <small class="text-muted">Last name as displayed on card</small>-->
+                      <div class="invalid-feedback">
+                        Last Name is required
+                      </div>
+                    </div>
+                    <div class="form-item col-sm-12 mb-3 is-required">
+                      <label for="email">Email</label>
+                      <input type="email" class="form-control" id="email" placeholder="you@example.com">
+                      <div class="invalid-feedback">
+                        Please enter a valid email
+                      </div>
+                    </div>
+                    <div class="form-item col-sm-12 mb-3 is-required">
+                      <label for="countryId">Country</label>
+                      <select class="countries form-control" id="countryId">
+                        <option value="">Select Country</option>
+                      </select>
+                      <div class="invalid-feedback">
+                        Please select country.
+                      </div>
+                    </div>
+                    <!--<div class="form-item col-sm-12 mb-3 is-required">-->
+                      <!--<label for="phone">Phone</label>-->
+                      <!--<input class="form-control" id="phone">-->
+                      <!--<div class="invalid-feedback">-->
+                        <!--Please enter phone.-->
+                      <!--</div>-->
+                    <!--</div>-->
+                    <div class="form-item col-sm-12 mb-3 is-required">
+                      <label for="stateId">State</label>
+                      <select class="states form-control" id="stateId">
+                        <option value="">Select State</option>
+                      </select>
+                      <div class="invalid-feedback">
+                        Please select state.
+                      </div>
+                    </div>
+                    <div class="form-item col-sm-12 mb-3 is-required">
+                      <label for="cityId">City</label>
+                      <select class="cities form-control" id="cityId">
+                        <option value="">Select City</option>
+                      </select>
+                      <div class="invalid-feedback">
+                        Please select city.
+                      </div>
+                    </div>
+                    <div class="form-item col-sm-12 mb-3 is-required">
+                      <label for="streetAddress">StreetAddress</label>
+                      <input class="form-control" id="streetAddress">
+                      <div class="invalid-feedback">
+                        Please enter streetAddress.
+                      </div>
+                    </div>
+                    <div class="form-item col-sm-12 mb-3">
+                      <label for="streetAddress2">StreetAddress2</label>
+                      <input class="form-control" id="streetAddress2">
+                      <div class="invalid-feedback">
+                        Please enter streetAddress.
+                      </div>
+                    </div>
+                    <div class="form-item col-sm-12 mb-3 is-required">
+                      <label for="postal-code">Post Code</label>
+                      <input class="form-control" id="postal-code">
+                      <div class="invalid-feedback">
+                        Please enter postal code.
+                      </div>
+                    </div>
+                    <div class="form-item col-sm-12 mb-3 is-required">
+                      <label for="cc-number">Credit card number</label>
+                      <div class="form-control" id="cc-number"></div>
+                      <div class="invalid-feedback">
+                        Credit card number is required
+                      </div>
+                    </div>
+                    <div class="form-item col-sm-12 mb-3 is-required">
+                      <label for="cc-expiration">Expiration</label>
+                      <div class="form-control" id="cc-expiration"></div>
+                      <div class="invalid-feedback">
+                        Expiration date required
+                      </div>
+                    </div>
+                    <div class="form-item col-sm-12 mb-3 is-required">
+                      <label for="cc-expiration">CVV</label>
+                      <div class="form-control" id="cc-cvv"></div>
+                      <div class="invalid-feedback">
+                        Security code required
+                      </div>
+                    </div>
+                  </div>
+                @*<div class="row">
                     <div class="col-sm-3 mb-3">
                         <label for="first-name">First Name</label>
                         <input class="form-control" id="first-name">
@@ -211,7 +313,7 @@
                             Please enter postal code.
                         </div>
                     </div>
-                </div>
+                </div>*@
 
                 <hr class="mb-4">
                 <div class="text-center">
@@ -445,7 +547,7 @@
 
                         return true;
                     }
-
+                    var email = $('#email');
                     function validateEmail() {
                         var baseValidity = validateInput(email);
 
@@ -462,29 +564,18 @@
                         return true;
                     }
 
-                    // var ccName = $('#cc-name');
-                    var firstName = $('#first-name');
-                    var lastName = $('#last-name');
-                    var address = $('#address');
-                    var postalCode = $('#postal-code');
-                    var email = $('#email');
+                    $('.form-item.is-required input').on('blur change', function () {
+                        var $this = $(this);
+                        if ($this.type == 'email') {
+                            validateEmail($this);
+                        }
+                        validateInput($this);
+                    })
 
-                    // ccName.on('change', function () {
-                    //     validateInput(ccName);
-                    // });
-                    firstName.on('change', function () {
-                        validateInput(firstName);
-                    });
-                    lastName.on('change', function () {
-                        validateInput(lastName);
-                    });
-                    address.on('change', function () {
-                        validateInput(address);
-                    });
-                    postalCode.on('change', function () {
-                        validateInput(postalCode);
-                    });
-                    email.on('change', validateEmail);
+                    $('.form-item.is-required select').on('blur change', function () {
+                        var $this = $(this);
+                        validateInput($this);
+                    })
 
 
                     hostedFieldsInstance.on('validityChange', function (event) {
@@ -529,14 +620,27 @@
                         handleIdElementStyle('loading', 'display', 'block');
 
                         var formIsInvalid = false;
-                        var state = hostedFieldsInstance.getState();
+                        
 
                         // perform validations on the non-Hosted Fields
                         // inputs
                         if (!validateEmail()) {
                             formIsInvalid = true;
                         }
+                        var $inputs = $('.form-item.is-required input')
+                        for (var i = 0; i < $inputs.length; i++) {
+                            if (!validateInput($inputs.eq(i))) {
+                                formIsInvalid = true
+                            }
+                        }
 
+                        var $selects = $('.form-item.is-required select')
+                        for (var i = 0; i < $selects.length; i++) {
+                            if (!validateInput($selects.eq(i))) {
+                                formIsInvalid = true
+                            }
+                        }
+                        var state = hostedFieldsInstance.getState();
                         // Loop through the Hosted Fields and check
                         // for validity, apply the is-invalid class
                         // to the field container if invalid
@@ -555,7 +659,16 @@
                         }
                         const firstName = document.getElementById('first-name').value;
                         const lastName = document.getElementById('last-name').value;
-                        const streetAddress = document.getElementById('address').value;
+                        const countryName = document.getElementById('countryId').value;
+                        const stateName = document.getElementById('stateId').value;
+                        const city = document.getElementById('cityId').value;
+                        const address = document.getElementById('streetAddress').value;
+                        const address2 = document.getElementById('streetAddress2').value;
+                        let streetAddressArr = []
+                        stateName && streetAddressArr.push(streetAddressArr)
+                        city && streetAddressArr.push(city)
+                        address && streetAddressArr.push(address)
+                        address2 && streetAddressArr.push(address2)
                         const postalCode = document.getElementById('postal-code').value;
                         const email = document.getElementById('email').value;
                         const tokenizeOption = {
@@ -563,13 +676,13 @@
                                 firstName: firstName,
                                 lastName: lastName,
                                 // company: 'Company',
-                                streetAddress: streetAddress,
+                                streetAddress: streetAddressArr.join(','),
                                 // extendedAddress: 'Unit 1',
                                 // passing just one of the country options is sufficient to
                                 // associate the card details with a particular country
                                 // valid country names and codes can be found here:
                                 // https://developers.braintreepayments.com/reference/general/countries/ruby#list-of-countries
-                                // countryName: 'United States',
+                                countryName: countryName,
                                 // countryCodeAlpha2: 'US',
                                 // countryCodeAlpha3: 'USA',
                                 // countryCodeNumeric: '840'
@@ -598,9 +711,10 @@
                             // 通过payload来给curPaymentMethod赋值
                             curPaymentMethod = paymentMethods[payload.type];
                             // Submit payload.nonce to your server
+                            const temp = payload;
                             const params = "paymentMethodNonce=" + payload.nonce + "&transactionNo=" + transactionNo +
                                 "&paymentMethod=" + curPaymentMethod + "&firstName=" + firstName + "&lastName=" +
-                                lastName + "&addressLine1=" + streetAddress + "&postalCode=" + postalCode + "&email=" + email;
+                                lastName + "&addressLine1=" + streetAddress + "&postalCode=" + postalCode + "&email=" + email + "&orderId=13906&referenceNbr=CTOWZBDCFIIIIGZVRCUX"; 
                             // "&outerCallId="+ outerCallId+;
                             ajaxPost(url, params, function (data) {
                                 const result = data;

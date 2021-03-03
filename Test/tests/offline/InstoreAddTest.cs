@@ -24,6 +24,7 @@ namespace Yuansfer_SDK.tests.offline
             request.settleCurrency = "USD";
             request.reference = "testfromshawn20210118";
             InstoreAddResponse response = client.execute(request);
+            Console.Write(JObject.FromObject(response));
             Assert.AreEqual("000100", response.retCode);
         }
     }

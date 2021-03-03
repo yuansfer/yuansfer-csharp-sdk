@@ -32,7 +32,7 @@ namespace test.Controllers
             YuanpayClient client = new YuanpayV3Client(config);
             ProcessRequest request = new ProcessRequest();
 
-            request.paymentMethod = "credit_card";
+            request.paymentMethod = "paypal_account";
             request.paymentMethodNonce = requestParam.paymentMethodNonce;
             request.transactionNo = requestParam.transactionNo;
 
