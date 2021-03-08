@@ -5,7 +5,7 @@
 
 ## Requirements
 
-- .NETCoreApp >=2.1
+- .NETCoreApp >=2.0 or .NET Standard >=2.0
 
 ## IDE
 
@@ -13,7 +13,14 @@
 
 ## Installation
 ```Nuget Package Manager
-PM > Install-Package yuansfer-payment -Version 1.0.1
+PM > Install-Package yuansfer-payment -Version 1.0.2
+```
+```Visual Studio:
+1. Open the Solution Explorer.
+2. Right-click on a project within your solution.
+3. Click on Manage NuGet Packages...
+4. Click on the Browse tab and search for "yuansfer-payment".
+5. Click on the yuansfer-payment package, select the appropriate version in the right-tab and click Install.
 ```
 
 ## Usage
