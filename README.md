@@ -12,10 +12,11 @@
 - Microsoft Visual Studio 2017
 
 ## Installation
-```Nuget Package Manager
+``` Nuget Package Manager
 PM > Install-Package yuansfer-payment -Version 1.0.2
 ```
-```Visual Studio:
+Or
+``` Visual Studio:
 1. Open the Solution Explorer.
 2. Right-click on a project within your solution.
 3. Click on Manage NuGet Packages...
