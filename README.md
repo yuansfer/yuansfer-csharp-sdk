@@ -5,7 +5,7 @@
 
 ## Requirements
 
-- .NET CoreApp >=2.0 or .NET Standard >=2.0
+- .NET Core >=2.0 or .NET Standard >=2.0
 
 ## IDE
 
