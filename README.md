@@ -69,7 +69,7 @@ OnlineSecurepayResponse response = client.execute(request);
 Console.Write(JObject.FromObject(response));
 ```
 
-### 2. Offline API
+### 3. Offline API
 ```c#
 InstoreCreateTranQrcodeRequest request = new InstoreCreateTranQrcodeRequest();
         
@@ -86,7 +86,7 @@ InstoreCreateTranQrcodeResponse response = client.execute(request);
 Console.Write(JObject.FromObject(response));
 ```
 
-### 3. Mobile API
+### 4. Mobile API
 ```c#
 MobilePrepayRequest request = new MobilePrepayRequest();
         
@@ -104,7 +104,7 @@ MobilePrepayResponse response = client.execute(request);
 Console.Write(JObject.FromObject(response));
 ```
 
-### 4. Data API
+### 5. Data API
 ```c#
 RefundRequest request = new RefundRequest();
         
@@ -117,4 +117,3 @@ RefundResponse response = client.execute(request);
 Console.Write(JObject.FromObject(response));
 System.out.println(JSONObject.fromObject(response));
 ```
-
