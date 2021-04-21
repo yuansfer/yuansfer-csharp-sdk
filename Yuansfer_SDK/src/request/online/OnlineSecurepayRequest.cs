@@ -22,13 +22,16 @@ namespace Yuansfer_SDK.src.request.online
         public string note { get; set; } //Note
         public int? timeout { get; set; } //Timeout 
         public string ipnUrl { get; set; } //Asynchronous callback address
-        public string callbackUrl { get; set; } //
+        public string callbackUrl { get; set; } //Synchronous callback address
         public string goodsInfo { get; set; } //Product Info, required JSON format
 
         //Credit card info
         public string creditType { get; set; }
         public int? paymentCount { get; set; }
         public int? frequency { get; set; }
+
+        //For Braintree 3DS2 only
+        public string customerNo { get; set; }
 
         //Data validation
         protected override void dataValidate()

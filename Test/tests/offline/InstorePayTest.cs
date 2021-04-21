@@ -19,9 +19,9 @@ namespace Yuansfer_SDK.tests.offline
         [TestMethod]
         public void Test1()
         {
-            request.reference = "test20210118";
+            request.transactionNo = "297553651236400592";
             request.paymentBarcode = "134657274201045039";
-            request.vendor = "wechatpay";
+            request.vendor = "paypal";
 
             InstorePayResponse response = client.execute(request);
             Console.Write(JObject.FromObject(response));

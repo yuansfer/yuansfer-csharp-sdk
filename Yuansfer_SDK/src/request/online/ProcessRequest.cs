@@ -14,6 +14,7 @@ namespace Yuansfer_SDK.src.request.online
         public string paymentMethodNonce { get; set; } 
         public string paymentMethod { get; set; } 
         public string transactionNo { get; set; } 
+        public string deviceData { get; set; }
 
 
         //Data validation

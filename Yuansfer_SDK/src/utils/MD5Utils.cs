@@ -7,7 +7,7 @@ using System.Text;
  **/
 namespace Yuansfer_SDK.src.utils
 {
-    [Serializable]
+    
     public class MD5Utils
     {
         /**

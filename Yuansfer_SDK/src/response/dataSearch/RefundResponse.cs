@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 
 /**
@@ -7,9 +8,10 @@ using System.Text;
  **/ 
 namespace Yuansfer_SDK.src.response.dataSearch
 {
-    [Serializable]
+    [DataContract]
     public class RefundResponse : YuanpayResponse
     {
+        [DataMember]
         public RefundBody result { get; set; }
     }
 }

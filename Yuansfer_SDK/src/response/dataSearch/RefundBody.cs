@@ -1,15 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Runtime.Serialization;
 
 /**
  *  RefundBody Class
- **/ 
+ **/
 namespace Yuansfer_SDK.src.response.dataSearch
 {
+    [DataContract]
     public class RefundBody
     {
+        [DataMember]
         public string amount { get; set; } //Order USD amount
+        [DataMember]
         public string rmbAmount { get; set; } //Order RMB amount
         public string refundAmount { get; set; } //Order refund USD amount
         public string refundRmbAmount { get; set; } //Order refund USD amount

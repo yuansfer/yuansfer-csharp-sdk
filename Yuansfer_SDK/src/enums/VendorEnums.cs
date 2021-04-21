@@ -24,6 +24,9 @@ namespace Yuansfer_SDK.src.enums
         public static readonly VendorEnums KAKAOPAY = new VendorEnums("kakaopay"); //Vendor: KaKao Pay
         public static readonly VendorEnums BKASH = new VendorEnums("bkash"); //Vendor: BKash
         public static readonly VendorEnums EASYPAISA = new VendorEnums("easypaisa"); //Vendor: Easypaisa
+        public static readonly VendorEnums APPLEPAY = new VendorEnums("applepay"); //Vendor: Apple Pay
+        public static readonly VendorEnums GOOGLEPAY = new VendorEnums("googlepay"); //Vendor: Google Pay
+        public static readonly VendorEnums PAYPAY = new VendorEnums("paypay"); //Vendor: Pay Pay
 
         public static IEnumerable<VendorEnums> Values
         {
@@ -44,6 +47,9 @@ namespace Yuansfer_SDK.src.enums
                 yield return KAKAOPAY;
                 yield return BKASH;
                 yield return EASYPAISA;
+                yield return APPLEPAY;
+                yield return GOOGLEPAY;
+                yield return PAYPAY;
             }
         }
 

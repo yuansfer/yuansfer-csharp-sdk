@@ -22,14 +22,14 @@ namespace Yuansfer_SDK.tests.online
         [TestMethod]
         public void Test1()
         {
-            request.amount = "0.10";
+            request.amount = "0.1";
             request.currency = "USD";
             request.settleCurrency = "USD";
-            request.vendor = "paypal";
-            request.terminal = "APP";
+            request.vendor = "alipay";
+            request.terminal = "ONLINE";
             request.reference = DateTime.Now.ToString();
-            request.ipnUrl = "https://helphalf.net/test/ipn";
-            request.callbackUrl = "https://helphalf.net/test?status={status}&transactionNo={transactionNo}&amount={amount}";
+            request.ipnUrl = "http://zk-tys.yunkeguan.com/ttest/test";
+            request.callbackUrl = "http://zk-tys.yunkeguan.com/ttest/test";
             request.description = "9245bd5e21d63e45833b1c4bdb7e7c83";
             request.note = "9245bd5e21d63e45833b1c4bdb7e7c83";
             item.Add("goods_name", "balance");

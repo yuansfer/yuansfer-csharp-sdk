@@ -22,7 +22,7 @@ namespace Yuansfer_SDK.tests.offline
             request.amount = "1.11";
             request.currency = "USD";
             request.settleCurrency = "USD";
-            request.reference = "testfromshawn20210118";
+            request.reference = DateTime.Now.ToString();
             InstoreAddResponse response = client.execute(request);
             Console.Write(JObject.FromObject(response));
             Assert.AreEqual("000100", response.retCode);

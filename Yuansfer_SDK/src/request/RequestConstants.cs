@@ -37,6 +37,19 @@ namespace Yuansfer_SDK.src.request
         public const string INSTORE_AUTH_UNFREEZE = "/app-instore/v3/auth-unfreeze";
 
         /*
+         * payout api suffix
+         */
+        public const string PAYOUT_PAY = "/v3/payouts/pay";
+        public const string PAYOUT_CREATE_ACCOUNT = "/v1/customers/account/create";
+
+        /*
+         * payout api suffix
+         */
+        public const string CUSTOMER_CREATE_ACCOUNT = "/v1/customers/create";
+        public const string CUSTOMER_RETRIEVE_ACCOUNT = "/v1/customers/retrieve";
+        public const string CUSTOMER_UPDATE_ACCOUNT = "/v1/customers/update";
+
+        /*
          * mobile api suffix
          */
         public const string MOBILE_PREPAY = "/micropay/v3/prepay";
@@ -52,7 +65,6 @@ namespace Yuansfer_SDK.src.request
         public const string SETTLE_LIST = "/app-data-search/v3/settle-list";
         public const string WITHDRAWAL_LIST = "/app-data-search/v3/withdrawal-list";
         public const string DATA_STATUS = "/app-data-search/v3/data-status";
-
 
         /*
          * Pre auth

@@ -12,6 +12,8 @@ namespace Yuansfer_SDK.src.enums
     {
         public static readonly SettleCurrencyEnums USD = new SettleCurrencyEnums("USD"); //Settlement Currency: American Dollar
         public static readonly SettleCurrencyEnums CNY = new SettleCurrencyEnums("CNY"); //Settlement Currency: Chinese RMB
+        public static readonly SettleCurrencyEnums KRW = new SettleCurrencyEnums("KRW");
+        public static readonly SettleCurrencyEnums GBP = new SettleCurrencyEnums("GBP");
 
         public static IEnumerable<SettleCurrencyEnums> Values
         {
@@ -19,6 +21,8 @@ namespace Yuansfer_SDK.src.enums
             {
                 yield return USD;
                 yield return CNY;
+                yield return KRW;
+                yield return GBP;
             }
         }
 

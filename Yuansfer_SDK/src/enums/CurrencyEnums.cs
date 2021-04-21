@@ -12,6 +12,15 @@ namespace Yuansfer_SDK.src.enums
     {
         public static readonly CurrencyEnums USD = new CurrencyEnums("USD"); //Currency: American Dollar
         public static readonly CurrencyEnums CNY = new CurrencyEnums("CNY"); //Currency: Chinese RMB
+        public static readonly CurrencyEnums GBP = new CurrencyEnums("GBP"); //Currency: 
+        public static readonly CurrencyEnums KRW = new CurrencyEnums("KRW"); //Currency: 
+        public static readonly CurrencyEnums PHP = new CurrencyEnums("PHP"); //Currency: 
+        public static readonly CurrencyEnums JPY = new CurrencyEnums("JPY"); //Currency: 
+        public static readonly CurrencyEnums THB = new CurrencyEnums("THB"); //Currency: 
+        public static readonly CurrencyEnums PKR = new CurrencyEnums("PKR"); //Currency: 
+        public static readonly CurrencyEnums MYR = new CurrencyEnums("MYR"); //Currency: 
+        public static readonly CurrencyEnums HKD = new CurrencyEnums("HKD"); //Currency: 
+        public static readonly CurrencyEnums IDR = new CurrencyEnums("IDR"); //Currency: 
 
         public static IEnumerable<CurrencyEnums> Values
         {
@@ -19,6 +28,15 @@ namespace Yuansfer_SDK.src.enums
             {
                 yield return USD;
                 yield return CNY;
+                yield return GBP;
+                yield return KRW;
+                yield return PHP;
+                yield return JPY;
+                yield return THB;
+                yield return PKR;
+                yield return MYR;
+                yield return HKD;
+                yield return IDR;
             }
         }
 

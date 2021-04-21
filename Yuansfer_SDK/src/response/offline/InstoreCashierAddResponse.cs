@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 using Newtonsoft.Json.Linq;
+using System.Runtime.Serialization;
 
 namespace Yuansfer_SDK.src.response.offline
 {
-    [Serializable]
+    [DataContract]
     public class InstoreCashierAddResponse : YuanpayResponse
     {
+        [DataMember]
         public JObject transaction { get; set; }
     }
 }

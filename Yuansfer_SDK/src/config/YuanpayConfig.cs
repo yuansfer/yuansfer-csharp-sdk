@@ -10,7 +10,7 @@ using Yuansfer_SDK.src.enums;
  **/
 namespace Yuansfer_SDK.src.config
 {
-    [Serializable]
+    
     public class YuanpayConfig
     {
         public string env { get; set; } // Environment type

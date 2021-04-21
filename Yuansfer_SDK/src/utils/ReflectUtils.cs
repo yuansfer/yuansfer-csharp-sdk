@@ -7,7 +7,7 @@ using Yuansfer_SDK.src.exception;
 
 namespace Yuansfer_SDK.src.utils
 {
-    [Serializable]
+    
     public class ReflectUtils
     {
         /**

@@ -12,6 +12,7 @@ namespace Yuansfer_SDK.tests.dataSearch
     [TestClass]
     public class TranQueryTest
     {
+        
         YuanpayClient client = new YuanpayV3Client(InitYuanpayConfig.initMerchantConfig());
 
         TranQueryRequest request = new TranQueryRequest();
@@ -19,7 +20,7 @@ namespace Yuansfer_SDK.tests.dataSearch
         [TestMethod]
         public void Test1()
         {
-            request.reference = "297553630266977470";
+            request.reference = "114-301854";
 
             TranQueryResponse response = client.execute(request);
             Console.Write(JObject.FromObject(response));

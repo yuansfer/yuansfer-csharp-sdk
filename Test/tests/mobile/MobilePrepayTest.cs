@@ -22,8 +22,8 @@ namespace Yuansfer_SDK.tests.mobile
             request.amount = "0.11";
             request.currency = "USD";
             request.settleCurrency = "USD";
-            request.vendor = "venmo";
-            request.terminal = "ONLINE";
+            request.vendor = "alipay";
+            request.terminal = "APP";
             request.reference = DateTime.Now.ToString();
             request.ipnUrl = "http://zk-tys.yunkeguan.com/ttest/test";
             request.description = "Test for description";
