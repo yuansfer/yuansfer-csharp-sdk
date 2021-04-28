@@ -32,7 +32,7 @@ Please see [examples](https://github.com/yuansfer/yuansfer-csharp-sdk/tree/maste
 ### 1. Init
 ```c#
 YuanpayConfig config = new YuanpayConfig(); //Initialize Yuansfer Configuration
-config.env = EnvironmentEnums.SANDBOX.Value; //Set Yuansfer to SandBox Environment, Possible Value: 
+config.env = EnvironmentEnums.SANDBOX.Value; //Set Yuansfer to SandBox Environment, Possible Value: SANDBOX, PRODUCTION
 config.merchantNo = "200043"; //Set Yuansfer MerchantNo
 config.storeNo = "300014"; //Set Yuansfer StoreNo
 config.token = "5cbfb079f15b150122261c8537086d77a"; //Set Yuansfer Token
