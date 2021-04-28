@@ -86,7 +86,7 @@ request.ipnUrl = "http://zk-tys.yunkeguan.com/ttest/test";
 request.needQrcode = "true";
 request.timeout = 120;
 
-InstoreCreateTranQrcodeResponse response = client.execute(request); //Make SecurePay request with above request body
+InstoreCreateTranQrcodeResponse response = client.execute(request); //Make Instore Create Tran Qr Code request with above request body
 Console.Write(JObject.FromObject(response)); //Debug purpose
 ```
 
