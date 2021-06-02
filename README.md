@@ -31,13 +31,13 @@ Please see [examples](https://github.com/yuansfer/yuansfer-csharp-sdk/tree/maste
 
 ### 1. Init
 ```c#
-YuanpayConfig config = new YuanpayConfig();
-config.env = EnvironmentEnums.SANDBOX.Value;
-config.merchantNo = "200043";
-config.storeNo = "300014";
-config.token = "5cbfb079f15b150122261c8537086d77a";
+YuanpayConfig config = new YuanpayConfig(); //Initialize Yuansfer Configuration
+config.env = EnvironmentEnums.SANDBOX.Value; //Set Yuansfer to SandBox Environment, Possible Value: SANDBOX, PRODUCTION
+config.merchantNo = "200043"; //Set Yuansfer MerchantNo
+config.storeNo = "300014"; //Set Yuansfer StoreNo
+config.token = "5cbfb079f15b150122261c8537086d77a"; //Set Yuansfer Token
 
-YuanpayClient client = new YuanpayV3Client(config);              
+YuanpayClient client = new YuanpayV3Client(config); //Initialize Yuansfer Client with above configuration              
 ```
 
 
@@ -48,9 +48,11 @@ JArray goods = new JArray();
 JObject item = new JObject();
 item.Add("goods_name","name1");
 item.Add("quantity","1");
-goods.Add(item);
-OnlineSecurepayRequest request = new OnlineSecurepayRequest();
-
+goods.Add(item); //Add product items to JSON Object with above format
+OnlineSecurepayRequest request = new OnlineSecurepayRequest(); //Initialize Yuansfer SecurePay request object
+/**
+* Assign required values to request body
+**/
 request.amount = "1.00";
 request.currency = "USD";
 request.settleCurrency = "USD";
@@ -63,16 +65,18 @@ request.note = "testNote";
 item.Add("goods_name","name1");
 item.Add("quantity", "1");
 goods.Add(item);
-request.goodsInfo = goods.ToString();
+request.goodsInfo = goods.ToString(); //Convert JSON object into JSON string
 
-OnlineSecurepayResponse response = client.execute(request);
-Console.Write(JObject.FromObject(response));
+OnlineSecurepayResponse response = client.execute(request); //Make SecurePay request with above request body
+Console.Write(JObject.FromObject(response)); //Debug purpose
 ```
 
 ### 3. Offline API
 ```c#
-InstoreCreateTranQrcodeRequest request = new InstoreCreateTranQrcodeRequest();
-        
+InstoreCreateTranQrcodeRequest request = new InstoreCreateTranQrcodeRequest(); //Initialize Yuansfer Instore Create Tran Qr Code request object
+/**
+* Assign required values to request body
+**/
 request.amount = "1.11";
 request.currency = "USD";
 request.settleCurrency = "USD";
@@ -82,14 +86,16 @@ request.ipnUrl = "http://zk-tys.yunkeguan.com/ttest/test";
 request.needQrcode = "true";
 request.timeout = 120;
 
-InstoreCreateTranQrcodeResponse response = client.execute(request);
-Console.Write(JObject.FromObject(response));
+InstoreCreateTranQrcodeResponse response = client.execute(request); //Make Instore Create Tran Qr Code request with above request body
+Console.Write(JObject.FromObject(response)); //Debug purpose
 ```
 
 ### 4. Mobile API
 ```c#
-MobilePrepayRequest request = new MobilePrepayRequest();
-        
+MobilePrepayRequest request = new MobilePrepayRequest(); //Initialize Yuansfer Mobile PrePay request object
+/**
+* Assign required values to request body
+**/
 request.amount = "0.11";
 request.currency = "USD";
 request.settleCurrency = "USD";
@@ -100,20 +106,21 @@ request.ipnUrl = "http://zk-tys.yunkeguan.com/ttest/test";
 request.description = "Test for description";
 request.note = "Test for note";
 
-MobilePrepayResponse response = client.execute(request);
-Console.Write(JObject.FromObject(response));
+MobilePrepayResponse response = client.execute(request); //Make Mobile PrePay request with above request body
+Console.Write(JObject.FromObject(response)); //Debug purpose
 ```
 
 ### 5. Data API
 ```c#
-RefundRequest request = new RefundRequest();
-        
+RefundRequest request = new RefundRequest(); //Initialize Yuansfer Refund request object
+/**
+* Assign required values to request body
+**/
 request.refundAmount = "1.11";
 request.currency = "USD";
 request.settleCurrency = "USD";
 request.reference = DateTime.Now.ToString();
         
-RefundResponse response = client.execute(request);
-Console.Write(JObject.FromObject(response));
-System.out.println(JSONObject.fromObject(response));
+RefundResponse response = client.execute(request); //Make Refund request with above request body
+Console.Write(JObject.FromObject(response)); //Debug purpose
 ```
