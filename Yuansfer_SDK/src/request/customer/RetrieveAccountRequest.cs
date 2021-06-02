@@ -18,16 +18,23 @@ namespace Yuansfer_SDK.src.request.customer
         //Data validation
         protected override void dataValidate()
         {
-
-            if (string.IsNullOrEmpty(customerCode))
+            if (string.IsNullOrEmpty(timestamp))
             {
-                throw new YuanpayException("customerCode is missing");
+                throw new YuanpayException("timestamp is missing");
             }
 
-            if (string.IsNullOrEmpty(customerNo))
+            if (string.IsNullOrEmpty(customerCode)
+                && string.IsNullOrEmpty(customerNo))
             {
-                throw new YuanpayException("customerNo is missing");
+                throw new YuanpayException("customerCode and customerNo missing");
             }
+
+            if (!string.IsNullOrEmpty(customerCode)
+                    && !string.IsNullOrEmpty(customerNo))
+            {
+                throw new YuanpayException("customerCode and customerNo cannot exist at the same time");
+            }
+
 
         }
 

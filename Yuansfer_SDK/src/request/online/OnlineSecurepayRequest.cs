@@ -20,7 +20,7 @@ namespace Yuansfer_SDK.src.request.online
         public string osType { get; set; } //Operating system type, only required when termial is WAP or APP
         public string description { get; set; } //Order description, will be displayed on cashier page
         public string note { get; set; } //Note
-        public int? timeout { get; set; } //Timeout 
+        public string timeout { get; set; } //Timeout 
         public string ipnUrl { get; set; } //Asynchronous callback address
         public string callbackUrl { get; set; } //Synchronous callback address
         public string goodsInfo { get; set; } //Product Info, required JSON format
@@ -50,21 +50,11 @@ namespace Yuansfer_SDK.src.request.online
             {
                 throw new YuanpayException("currency is missing");
             }
-            bool currencyFlag = CurrencyEnums.containValidate(currency);
-            if (!currencyFlag)
-            {
-                throw new YuanpayException("data error: currency");
-            }
 
             //Settlement Currency validation
             if (string.IsNullOrEmpty(settleCurrency))
             {
                 throw new YuanpayException("currency is missing");
-            }
-            bool settleCurrencyFlag = SettleCurrencyEnums.containValidate(settleCurrency);
-            if (!settleCurrencyFlag)
-            {
-                throw new YuanpayException("data error: settleCurrency");
             }
 
             //Vendor validation
@@ -72,21 +62,11 @@ namespace Yuansfer_SDK.src.request.online
             {
                 throw new YuanpayException("vendor is missing");
             }
-            bool vendorFlag = VendorEnums.containValidate(vendor);
-            if (!vendorFlag)
-            {
-                throw new YuanpayException("data error: vendor");
-            }
 
             //Terminal validation
             if (string.IsNullOrEmpty(terminal))
             {
                 throw new YuanpayException("terminal is missing");
-            }
-            bool terminalFlag = TerminalEnums.containValidate(terminal);
-            if (!vendorFlag)
-            {
-                throw new YuanpayException("data error: terminal");
             }
 
             //Description and note validation
@@ -97,6 +77,7 @@ namespace Yuansfer_SDK.src.request.online
                     throw new YuanpayException("description is too long");
                 }
             }
+
             if (!string.IsNullOrEmpty(note))
             {
                 if (note.Length > 100)

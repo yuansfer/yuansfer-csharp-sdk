@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using Newtonsoft.Json.Linq;
 using System.Text;
 
 /**
@@ -12,6 +13,6 @@ namespace Yuansfer_SDK.src.response.dataSearch
     public class RefundResponse : YuanpayResponse
     {
         [DataMember]
-        public RefundBody result { get; set; }
+        public JObject result { get; set; }
     }
 }

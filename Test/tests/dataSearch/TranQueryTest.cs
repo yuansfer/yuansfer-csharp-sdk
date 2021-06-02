@@ -20,7 +20,7 @@ namespace Yuansfer_SDK.tests.dataSearch
         [TestMethod]
         public void Test1()
         {
-            request.reference = "114-301854";
+            request.transactionNo = "297553657363308323";
 
             TranQueryResponse response = client.execute(request);
             Console.Write(JObject.FromObject(response));

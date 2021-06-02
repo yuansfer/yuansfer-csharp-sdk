@@ -31,9 +31,11 @@ namespace Yuansfer_SDK.src.utils
 
             } catch (JsonReaderException e)
             {
+                Console.Write(e.ToString());
                 return false;
             } catch (Exception e)
             {
+                Console.Write(e.ToString());
                 return false;
             }
         }
@@ -57,9 +59,11 @@ namespace Yuansfer_SDK.src.utils
                 return true;
             } catch (JsonReaderException e)
             {
+                Console.Write(e.ToString());
                 return false;
             } catch (Exception e)
             {
+                Console.Write(e.ToString());
                 return false;
             }
         }

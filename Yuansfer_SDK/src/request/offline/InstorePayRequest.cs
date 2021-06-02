@@ -41,11 +41,6 @@ namespace Yuansfer_SDK.src.request.offline
             {
                 throw new YuanpayException("vendor is missing");
             }
-            bool vendorFlag = VendorEnums.containValidate(vendor);
-            if (!vendorFlag)
-            {
-                throw new YuanpayException("data error: vendor");
-            }
         }
 
         protected override string getAPIUrl(string env)
@@ -61,7 +56,7 @@ namespace Yuansfer_SDK.src.request.offline
             JObject json = JObject.Parse(ret);
             if (json.GetValue("transaction") != null)
             {
-                response.transaction = JObject.Parse(json.GetValue("transaction").ToString());
+                response.result = JObject.Parse(json.GetValue("transaction").ToString());
             }
             response.retCode = json.GetValue("ret_code").ToString();
             response.retMsg = json.GetValue("ret_msg").ToString();

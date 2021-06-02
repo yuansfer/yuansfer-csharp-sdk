@@ -10,11 +10,11 @@ using Newtonsoft.Json.Linq;
 namespace Yuansfer_SDK.tests.payout
 {
     [TestClass]
-    public class PayTest
+    public class PayoutPayTest
     {
         YuanpayClient client = new YuanpayV3Client(InitYuanpayConfig.initMerchantConfig());
 
-        PayRequest request = new PayRequest();
+        PayoutPayRequest request = new PayoutPayRequest();
 
         [TestMethod]
         public void Test1()
@@ -29,7 +29,7 @@ namespace Yuansfer_SDK.tests.payout
             request.description = "test description";
             request.note = "test note";
 
-            PayResponse response = client.execute(request);
+            PayoutPayResponse response = client.execute(request);
             Console.Write(JObject.FromObject(response));
             Assert.AreEqual("000100", response.retCode);
         }

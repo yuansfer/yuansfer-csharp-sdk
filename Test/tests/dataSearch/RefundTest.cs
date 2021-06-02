@@ -19,10 +19,10 @@ namespace Yuansfer_SDK.tests.dataSearch
         [TestMethod]
         public void Test1()
         {
-            request.refundAmount = "10";
+            request.refundAmount = "93.15";
             request.currency = "USD";
             request.settleCurrency = "USD";
-            request.transactionNo = "297553650447943325";
+            request.transactionNo = "297553656994938424";
 
             RefundResponse response = client.execute(request);
             Console.Write(JObject.FromObject(response));

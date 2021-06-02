@@ -20,11 +20,11 @@ namespace Yuansfer_SDK.src.request
          */
         public const string ONLINE_SECUREPAY = "/online/v3/secure-pay";
         public const string UPDATE_RECURRING = "/creditpay/v3/update-recurring";
-        public const string RECURRING_APPLYTOKEN = "/auto-debit/v3/apply-token";
+        public const string RECURRING_APPLY_TOKEN = "/auto-debit/v3/apply-token";
         public const string RECURRING_CONSULT = "/auto-debit/v3/consult";
         public const string RECURRING_PAY = "/auto-debit/v3/pay";
         public const string RECURRING_REVOKE = "/auto-debit/v3/revoke";
-        public const string BRAIN_PAYMENT = "/creditpay/v3/process";
+        public const string ONLINE_PROCESS = "/creditpay/v3/process";
 
         /*
          * instore api suffix
@@ -45,7 +45,7 @@ namespace Yuansfer_SDK.src.request
         /*
          * payout api suffix
          */
-        public const string CUSTOMER_CREATE_ACCOUNT = "/v1/customers/create";
+        public const string CUSTOMER_REGISTER_CUSTOMER = "/v1/customers/create";
         public const string CUSTOMER_RETRIEVE_ACCOUNT = "/v1/customers/retrieve";
         public const string CUSTOMER_UPDATE_ACCOUNT = "/v1/customers/update";
 

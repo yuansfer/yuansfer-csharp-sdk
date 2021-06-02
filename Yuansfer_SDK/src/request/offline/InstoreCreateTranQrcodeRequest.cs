@@ -82,36 +82,9 @@ namespace Yuansfer_SDK.src.request.offline
             {
                 response.retMsg = json.GetValue("ret_msg").ToString();
             }
-            if (!string.IsNullOrEmpty(response.retCode) && response.retCode.Equals("000100"))
+            if (json.GetValue("result") != null)
             {
-                //if (json.GetValue("transactionNo") != null)
-                //{
-                //    response.transactionNo = json.GetValue("transactionNo").ToString();
-                //}
-                //if (json.GetValue("reference") != null)
-                //{
-                //    response.reference = json.GetValue("reference").ToString();
-                //}
-                //if (json.GetValue("amount") != null)
-                //{
-                //    response.amount = json.GetValue("amount").ToString();
-                //}
-                //if (json.GetValue("timeout") != null)
-                //{
-                //    response.timeout = int.Parse(json.GetValue("timeout").ToString());
-                //}
-                //if (json.GetValue("deepLink") != null)
-                //{
-                //    response.deepLink = json.GetValue("deepLink").ToString();
-                //}
-                //if (json.GetValue("qrcodeUrl") != null)
-                //{
-                //    response.qrcodeUrl = json.GetValue("qrcodeUrl").ToString();
-                //}
-                if (json.GetValue("result") != null)
-                {
-                    response.result =JObject.Parse(json.GetValue("result").ToString());
-                }
+                response.result =JObject.Parse(json.GetValue("result").ToString());
             }
             return response;
         }

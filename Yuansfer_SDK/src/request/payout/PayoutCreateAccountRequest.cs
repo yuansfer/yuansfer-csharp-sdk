@@ -11,71 +11,34 @@ namespace Yuansfer_SDK.src.request.payout
 {
     public class PayoutCreateAccountRequest : YuanpayRequest<PayoutCreateAccountResponse>
     {
-        public string city { get; set; } //City
-        public string company { get; set; } //Company Name
-        public string country { get; set; } //Country name
-        public string countryCode { get; set; } //Country code
-        public string customerCode { get; set; } //Customer code
-        public string dateOfBirth { get; set; } //Date of birth
-        public string email { get; set; } //Demail Address
-        public string firstName { get; set; } //First name
-        public string lastName { get; set; } //Last name
-        public string mobileNumber { get; set; } //Mobile phone number
-        public string phone { get; set; } //Phone number
-        public string state { get; set; } //State
-        public string street { get; set; } //Address
-        public string street2 { get; set; } //
-        public string zip { get; set; } //Zipcode
-        public string callbackUrl { get; set; } //Synchronous callback address
-        public string ipnUrl { get; set; } //Asynchronous callback address
+        public string accountType { get; set; } //User account type, possible value: "CARD", "PAYPAL", "BANK_ACCOUNT", "PREPAID_CARD", "ALIPAY"
+        public string customerNo { get; set; } //Company Name
+        public string accountTag { get; set; }
+        public string ipnUrl { get; set; }
+        public string callbackUrl { get; set; }
+        public string clientIp { get; set; }
 
         //Data validation
         protected override void dataValidate()
         {
-
-            if (string.IsNullOrEmpty(email))
+            if (string.IsNullOrEmpty(accountType))
             {
-                throw new YuanpayException("email is missing");
+                throw new YuanpayException("accountType is missing");
             }
 
-            if (string.IsNullOrEmpty(firstName))
+            if (string.IsNullOrEmpty(customerNo))
             {
-                throw new YuanpayException("firstName is missing");
+                throw new YuanpayException("customerNo is missing");
             }
 
-            if (string.IsNullOrEmpty(lastName))
+            if (string.IsNullOrEmpty(accountTag))
             {
-                throw new YuanpayException("lastName is missing");
+                throw new YuanpayException("accountTag is missing");
             }
 
-            if (string.IsNullOrEmpty(customerCode))
+            if (string.IsNullOrEmpty(clientIp))
             {
-                throw new YuanpayException("customerCode is missing");
-            }
-
-            if (string.IsNullOrEmpty(dateOfBirth))
-            {
-                throw new YuanpayException("dateOfBirth is missing");
-            }
-
-            if (string.IsNullOrEmpty(street))
-            {
-                throw new YuanpayException("street is missing");
-            }
-
-            if (string.IsNullOrEmpty(city))
-            {
-                throw new YuanpayException("city is missing");
-            }
-
-            if (string.IsNullOrEmpty(state))
-            {
-                throw new YuanpayException("state is missing");
-            }
-
-            if (string.IsNullOrEmpty(zip))
-            {
-                throw new YuanpayException("zip is missing");
+                throw new YuanpayException("clientIp is missing");
             }
 
         }

@@ -23,7 +23,6 @@ namespace Yuansfer_SDK.src.request.mobile
         public string openid { get; set; } //Wechat openid
         public string description { get; set; } //Transaction description
         public string note { get; set; } //Transaction note
-        public int? timeout { get; set; } //Timeout in minutes
 
         protected override void dataValidate()
         {
@@ -41,19 +40,11 @@ namespace Yuansfer_SDK.src.request.mobile
             {
                 throw new YuanpayException("currency is missing");
             }
-            bool currencyFlag = CurrencyEnums.containValidate(currency);
-            if (!currencyFlag)
-            {
-                throw new YuanpayException("data error: currency");
-            }
+
+            
             if (string.IsNullOrEmpty(settleCurrency))
             {
                 throw new YuanpayException("settleCurrency is missing");
-            }
-            bool settleCurrencyFlag = SettleCurrencyEnums.containValidate(settleCurrency);
-            if (!settleCurrencyFlag)
-            {
-                throw new YuanpayException("data error: settleCurrency");
             }
 
             //Vendor validation
@@ -61,22 +52,13 @@ namespace Yuansfer_SDK.src.request.mobile
             {
                 throw new YuanpayException("vendor is missing");
             }
-            bool vendorFlag = VendorEnums.containValidate(vendor);
-            if (!vendorFlag)
-            {
-                throw new YuanpayException("data error: vendor");
-            }
 
             //Terminal validation
             if (string.IsNullOrEmpty(terminal))
             {
                 throw new YuanpayException("terminal is missing");
             }
-            bool terminalFlag = TerminalEnums.containValidate(terminal);
-            if (!terminalFlag)
-            {
-                throw new YuanpayException("data error: terminal");
-            }
+
             if(VendorEnums.ALIPAY.Value.Equals(vendor) && !TerminalEnums.APP.Value.Equals(terminal))
             {
                 throw new YuanpayException("data error: terminal");

@@ -28,21 +28,11 @@ namespace Yuansfer_SDK.src.request.offline
             {
                 throw new YuanpayException("currency is missing");
             }
-            bool currencyFlag = CurrencyEnums.containValidate(currency);
-            if (!currencyFlag)
-            {
-                throw new YuanpayException("data error: currency");
-            }
 
             //Settlement Currency validation
             if (string.IsNullOrEmpty(settleCurrency))
             {
-                throw new YuanpayException("currency is missing");
-            }
-            bool settleCurrencyFlag = SettleCurrencyEnums.containValidate(settleCurrency);
-            if (!settleCurrencyFlag)
-            {
-                throw new YuanpayException("data error: settleCurrency");
+                throw new YuanpayException("settleCurrency is missing");
             }
 
             //Reference validation

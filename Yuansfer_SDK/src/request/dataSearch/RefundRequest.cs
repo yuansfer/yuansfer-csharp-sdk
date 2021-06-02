@@ -32,31 +32,21 @@ namespace Yuansfer_SDK.src.request.dataSearch
             {
                 throw new YuanpayException("currency is missing");
             }
-            bool currencyFlag = CurrencyEnums.containValidate(currency);
-            if (!currencyFlag)
-            {
-                throw new YuanpayException("data error: currency");
-            }
 
             //Settlement Currency validation
             if (string.IsNullOrEmpty(settleCurrency))
             {
-                throw new YuanpayException("currency is missing");
-            }
-            bool settleCurrencyFlag = SettleCurrencyEnums.containValidate(settleCurrency);
-            if (!settleCurrencyFlag)
-            {
-                throw new YuanpayException("data error: settleCurrency");
+                throw new YuanpayException("settleCurrency is missing");
             }
 
             //TransactionNo and Reference validation
             if(string.IsNullOrEmpty(transactionNo) && string.IsNullOrEmpty(reference))
             {
-                throw new YuanpayException("transaction and reference cannot be null at the same time");
+                throw new YuanpayException("transaction number and reference cannot be null at the same time");
             }
             if (!string.IsNullOrEmpty(transactionNo) && !string.IsNullOrEmpty(reference))
             {
-                throw new YuanpayException("transaction and reference cannot exist at the same time");
+                throw new YuanpayException("transaction number and reference cannot exist at the same time");
             }
         }
 
@@ -73,9 +63,7 @@ namespace Yuansfer_SDK.src.request.dataSearch
             JObject json = JObject.Parse(ret);
             if (json.GetValue("result") != null)
             {
-                string resultJson = json.GetValue("result").ToString();
-                RefundBody result = JsonConvert.DeserializeObject<RefundBody>(resultJson);
-                response.result = result;
+                response.result = JObject.Parse(json.GetValue("result").ToString());
             }
             response.retCode = json.GetValue("ret_code").ToString();
             response.retMsg = json.GetValue("ret_msg").ToString();

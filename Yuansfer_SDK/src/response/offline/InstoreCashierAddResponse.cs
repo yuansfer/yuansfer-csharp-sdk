@@ -10,6 +10,6 @@ namespace Yuansfer_SDK.src.response.offline
     public class InstoreCashierAddResponse : YuanpayResponse
     {
         [DataMember]
-        public JObject transaction { get; set; }
+        public JObject result { get; set; }
     }
 }

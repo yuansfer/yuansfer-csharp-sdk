@@ -43,7 +43,7 @@ namespace Yuansfer_SDK.src.request.online
         protected override string getAPIUrl(string env)
         {
             string urlPrefix = getUrlPrefix(env);
-            string url = urlPrefix + RequestConstants.BRAIN_PAYMENT;
+            string url = urlPrefix + RequestConstants.ONLINE_PROCESS;
             return url;
         }
 

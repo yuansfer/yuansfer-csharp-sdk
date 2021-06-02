@@ -17,11 +17,11 @@ namespace Yuansfer_SDK.src.request.dataSearch
             //TransactionNo and Reference validation
             if (string.IsNullOrEmpty(transactionNo) && string.IsNullOrEmpty(reference))
             {
-                throw new YuanpayException("transaction and reference cannot be null at the same time");
+                throw new YuanpayException("transaction number and reference cannot be null at the same time");
             }
             if (!string.IsNullOrEmpty(transactionNo) && !string.IsNullOrEmpty(reference))
             {
-                throw new YuanpayException("transaction and reference cannot exist at the same time");
+                throw new YuanpayException("transaction number and reference cannot exist at the same time");
             }
         }
 

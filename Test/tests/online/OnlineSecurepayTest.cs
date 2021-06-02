@@ -22,20 +22,18 @@ namespace Yuansfer_SDK.tests.online
         [TestMethod]
         public void Test1()
         {
-            request.amount = "0.1";
+            request.amount = "0.01";
             request.currency = "USD";
             request.settleCurrency = "USD";
             request.vendor = "alipay";
             request.terminal = "ONLINE";
-            request.reference = DateTime.Now.ToString();
-            request.ipnUrl = "http://zk-tys.yunkeguan.com/ttest/test";
-            request.callbackUrl = "http://zk-tys.yunkeguan.com/ttest/test";
-            request.description = "9245bd5e21d63e45833b1c4bdb7e7c83";
-            request.note = "9245bd5e21d63e45833b1c4bdb7e7c83";
-            item.Add("goods_name", "balance");
-            item.Add("quantity", "1");
-            goods.Add(item);
-            request.goodsInfo = goods.ToString();
+            request.reference = "21111111100233113121";
+            request.ipnUrl = "https://zk-test.com/api/api_pay_yuansfer";
+            request.callbackUrl = "https://google.com";
+            request.description = "dev";
+            request.note = "this is a test note from shawn";
+            request.timeout = "120";
+            
 
             OnlineSecurepayResponse response = client.execute(request);
             Console.Write(JObject.FromObject(response));

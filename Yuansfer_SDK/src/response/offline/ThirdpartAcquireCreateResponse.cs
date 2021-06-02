@@ -7,7 +7,7 @@ using Newtonsoft.Json.Linq;
 namespace Yuansfer_SDK.src.response.offline
 {
     [DataContract]
-    public class ThirdpartAcquireCreateResponse : YuanpayResponse
+    public class ThirdPartyAcquireCreateResponse : YuanpayResponse
     {
         [DataMember]
         public JObject result { get; set; } 
