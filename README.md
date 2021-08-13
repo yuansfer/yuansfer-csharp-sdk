@@ -14,7 +14,7 @@
 ## Installation
 Package Manager Console command
 ``` Nuget Package Manager
-PM > Install-Package Yuansfer -Version 3.0.0
+PM > Install-Package Yuansfer -Version 3.0.0.1
 ```
 Or Visual Studio
 ``` Visual Studio:
