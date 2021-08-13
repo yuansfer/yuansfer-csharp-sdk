@@ -1,0 +1,9 @@
+D:\yuansfer\yuansfer-csharp-sdk\Yuansfer_SDK\obj\Debug\Yuansfer_SDK.csprojAssemblyReference.cache
+D:\yuansfer\yuansfer-csharp-sdk\Yuansfer_SDK\obj\Debug\Yuansfer_SDK.csproj.CoreCompileInputs.cache
+D:\yuansfer\yuansfer-csharp-sdk\Yuansfer_SDK\bin\Debug\Yuansfer_SDK.dll
+D:\yuansfer\yuansfer-csharp-sdk\Yuansfer_SDK\bin\Debug\Yuansfer_SDK.pdb
+D:\yuansfer\yuansfer-csharp-sdk\Yuansfer_SDK\bin\Debug\Newtonsoft.Json.dll
+D:\yuansfer\yuansfer-csharp-sdk\Yuansfer_SDK\bin\Debug\Newtonsoft.Json.xml
+D:\yuansfer\yuansfer-csharp-sdk\Yuansfer_SDK\obj\Debug\Yuansfer_SDK.csproj.CopyComplete
+D:\yuansfer\yuansfer-csharp-sdk\Yuansfer_SDK\obj\Debug\Yuansfer_SDK.dll
+D:\yuansfer\yuansfer-csharp-sdk\Yuansfer_SDK\obj\Debug\Yuansfer_SDK.pdb
