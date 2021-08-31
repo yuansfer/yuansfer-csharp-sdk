@@ -5,7 +5,7 @@
 
 ## Requirements
 
-- .NET Core >=2.0 or .NET Standard >=2.0
+- .NET Core >=2.0 or .NET Standard >=2.0 or .NET Framework >=4.6.1
 
 ## IDE
 
@@ -14,7 +14,7 @@
 ## Installation
 Package Manager Console command
 ``` Nuget Package Manager
-PM > Install-Package yuansfer-payment -Version 1.0.2
+PM > Install-Package Yuansfer -Version 3.0.0.3
 ```
 Or Visual Studio
 ``` Visual Studio:
