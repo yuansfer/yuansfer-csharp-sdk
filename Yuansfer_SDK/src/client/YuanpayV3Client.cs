@@ -9,6 +9,9 @@ using Yuansfer_SDK.src.config;
 using Yuansfer_SDK.src.request;
 using Yuansfer_SDK.src.response;
 using Yuansfer_SDK.src.exception;
+using System.Threading.Tasks;
+using Yuansfer_SDK.src.models;
+using Newtonsoft.Json;
 
 /**
  *  Yuanpay Client implementation
@@ -26,20 +29,13 @@ namespace Yuansfer_SDK.src.client
         }
 
         //Initialize Http request
-        public static HttpClient getDefaultClient()
-        {
-            HttpClient client = new HttpClient();
-            client.Timeout = TimeSpan.FromSeconds(30);
-            return client;
-        }
+        private HttpClient client = new System.Net.Http.HttpClient();
 
         //Execute method to make request
         public T execute<T>(YuanpayRequest<T> request) where T : YuanpayResponse
         {
             try
             {
-                HttpClient client = getDefaultClient();
-                
 
                 //Bind config
                 if(yuanpayConfig == null)
@@ -76,24 +72,28 @@ namespace Yuansfer_SDK.src.client
                 var response =client.PostAsync(url, stringContent).Result;
                 string responseBody = null;
 
+                T t;
                 if (response.IsSuccessStatusCode)
                 {
                     var responseContent = response.Content;
                     responseBody = responseContent.ReadAsStringAsync().Result;
+                    t = request.convertResponse(responseBody);
                 }
-
-                
-                if (string.IsNullOrEmpty(responseBody))
+                else
                 {
-                    throw new YuanpayException("fail to connect");
+                    HttpObject httpObject = new HttpObject();
+                    httpObject.HttpStatusCode = response.StatusCode;
+                    httpObject.HttpContent = response.Content;
+                    t = request.convertResponse(JsonConvert.SerializeObject(httpObject));
                 }
 
-                T t = request.convertResponse(responseBody);
                 return t;
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 throw new YuanpayException(e.Message);
-            } finally
+            }
+            finally
             {
                 
             }

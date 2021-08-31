@@ -9,7 +9,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Yuansfer_SDK.src.request.recurring
 {
-    public class UpdateRecurringRequest : YuanpayRequest<UpdateRecurringResponse>
+    public class RecurringUpdateRequest : YuanpayRequest<RecurringUpdateResponse>
     {
         public int paymentCount { get; set; } 
         public string status { get; set; } 
@@ -39,14 +39,14 @@ namespace Yuansfer_SDK.src.request.recurring
         protected override string getAPIUrl(string env)
         {
             string urlPrefix = getUrlPrefix(env);
-            string url = urlPrefix + RequestConstants.UPDATE_RECURRING;
+            string url = urlPrefix + RequestConstants.RECURRING_UPDATE;
             return url;
         }
 
         //Handle response data
-        public override UpdateRecurringResponse convertResponse(string ret)
+        public override RecurringUpdateResponse convertResponse(string ret)
         {
-            UpdateRecurringResponse response = new UpdateRecurringResponse();
+            RecurringUpdateResponse response = new RecurringUpdateResponse();
             JObject json = JObject.Parse(ret);
             if (json.GetValue("result") != null)
             {

@@ -1,42 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
-using Yuansfer_SDK.src.response.payout;
+using Yuansfer_SDK.src.response.transaction;
 using Yuansfer_SDK.src.exception;
 using Yuansfer_SDK.src.enums;
 using Newtonsoft.Json.Linq;
 
-namespace Yuansfer_SDK.src.request.payout
+/**
+ *  Payment Cancel request 
+ **/ 
+namespace Yuansfer_SDK.src.request.transaction
 {
-    public class PayoutInquiryRequest : YuanpayRequest<PayoutInquiryResponse>
+    public class MixedCancelRequest : YuanpayRequest<MixedCancelResponse>
     {
-        public string invoiceId { get; set; } 
+        public string recordNo { get; set; } //recordNo of the transaction
 
-        //Data validation
         protected override void dataValidate()
         {
-
-            //Reference validation
-            if (string.IsNullOrEmpty(invoiceId))
+            //TransactionNo and Reference validation
+            if (string.IsNullOrEmpty(recordNo) )
             {
-                throw new YuanpayException("invoiceId is missing");
+                throw new YuanpayException("recordNo cannot be null");
             }
-
         }
 
-        //Get Api url
         protected override string getAPIUrl(string env)
         {
             string urlPrefix = getUrlPrefix(env);
-            string url = urlPrefix + RequestConstants.PAYOUT_INQUIRY;
+            string url = urlPrefix + RequestConstants.MIXED_CANCEL;
             return url;
         }
 
-        //Handle response data
-        public override PayoutInquiryResponse convertResponse(string ret)
+        public override MixedCancelResponse convertResponse(string ret)
         {
-            PayoutInquiryResponse response = new PayoutInquiryResponse();
+            MixedCancelResponse response = new MixedCancelResponse();
             JObject json = JObject.Parse(ret);
             if (json.GetValue("result") != null)
             {

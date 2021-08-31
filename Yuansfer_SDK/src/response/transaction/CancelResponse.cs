@@ -5,12 +5,12 @@ using Newtonsoft.Json.Linq;
 using System.Runtime.Serialization;
 
 /**
- *  Transaction Query response 
+ *  Transaction Cancel response 
  **/
-namespace Yuansfer_SDK.src.response.dataSearch
+namespace Yuansfer_SDK.src.response.transaction
 {
     [DataContract]
-    public class TranQueryResponse : YuanpayResponse
+    public class CancelResponse : YuanpayResponse
     {
         [DataMember]
         public JObject result { get; set; }

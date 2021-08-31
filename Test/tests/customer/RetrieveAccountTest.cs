@@ -10,19 +10,19 @@ using Newtonsoft.Json.Linq;
 namespace Yuansfer_SDK.tests.customer
 {
     [TestClass]
-    public class PayTest
+    public class RetrieveAccountTest
     {
         YuanpayClient client = new YuanpayV3Client(InitYuanpayConfig.initMerchantConfig());
 
-        RetrieveAccountRequest request = new RetrieveAccountRequest();
+        CustomerRetrieveRequest request = new CustomerRetrieveRequest();
 
         [TestMethod]
         public void Test1()
         {
-            request.customerCode = "testCode";
-            request.timestamp = DateTime.UtcNow.ToString("yyyy-MM-ddThh:mm ttZ");
+            request.customerCode = "Yuansfer082520210318119";
+            request.timestamp = DateTime.UtcNow.ToString("yyyy-MM-ddThh:mm:ttZ");
 
-            RetrieveAccountResponse response = client.execute(request);
+            CustomerRetrieveResponse response = client.execute(request);
             Console.Write(JObject.FromObject(response));
             Assert.AreEqual("000100", response.retCode);
         }

@@ -1,10 +1,10 @@
-﻿using System.Runtime.Serialization;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
+using System.Runtime.Serialization;
 
 namespace Yuansfer_SDK.src.response.offline
 {
     [DataContract]
-    public class InstoreAddResponse : YuanpayResponse
+    public class GenerateMixedQrcodeResponse : YuanpayResponse
     {
         [DataMember]
         public JObject result { get; set; }

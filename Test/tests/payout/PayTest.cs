@@ -21,7 +21,7 @@ namespace Yuansfer_SDK.tests.payout
         {
             request.amount = "1.00";
             request.currency = "USD";
-            //request.ipnUrl = "https://yuansferdev.com/callback";
+            request.ipnUrl = "https://yuansferdev.com/callback";
             request.accountToken = "2010305228244863855835";
             request.customerNo = "2000305228244862935303";
             request.invoiceId = DateTime.Now.ToString();

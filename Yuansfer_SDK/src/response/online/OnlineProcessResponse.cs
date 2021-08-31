@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
+using System.Web;
 using Newtonsoft.Json.Linq;
 
-namespace Yuansfer_SDK.src.response.recurring
+namespace Yuansfer_SDK.src.response.online
 {
     [DataContract]
-    public class UpdateRecurringResponse : YuanpayResponse
+    public class OnlineProcessResponse : YuanpayResponse
     {
+        [DataMember]
         public JObject result { get; set; }
     }
 }

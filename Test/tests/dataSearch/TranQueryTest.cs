@@ -2,12 +2,12 @@
 
 using Yuansfer_SDK.src.client;
 using Yuansfer_SDK.tests.common;
-using Yuansfer_SDK.src.request.dataSearch;
-using Yuansfer_SDK.src.response.dataSearch;
+using Yuansfer_SDK.src.request.transaction;
+using Yuansfer_SDK.src.response.transaction;
 using Newtonsoft.Json.Linq;
 using System;
 
-namespace Yuansfer_SDK.tests.dataSearch
+namespace Yuansfer_SDK.tests.transaction
 {
     [TestClass]
     public class TranQueryTest
@@ -20,8 +20,7 @@ namespace Yuansfer_SDK.tests.dataSearch
         [TestMethod]
         public void Test1()
         {
-            request.transactionNo = "297553657363308323";
-
+            request.reference = "297553663736204188";
             TranQueryResponse response = client.execute(request);
             Console.Write(JObject.FromObject(response));
             Assert.AreEqual("000100", response.retCode);

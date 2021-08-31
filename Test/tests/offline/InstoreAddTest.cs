@@ -19,10 +19,10 @@ namespace Yuansfer_SDK.tests.offline
         [TestMethod]
         public void Test1()
         {
-            request.amount = "1.11";
+            request.amount = "0.02";
             request.currency = "USD";
             request.settleCurrency = "USD";
-            request.reference = DateTime.Now.ToString();
+            request.reference = DateTime.Now.ToString("yyyyMMddHHmmssffff");
             InstoreAddResponse response = client.execute(request);
             Console.Write(JObject.FromObject(response));
             Assert.AreEqual("000100", response.retCode);

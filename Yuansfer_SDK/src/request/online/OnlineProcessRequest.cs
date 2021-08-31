@@ -9,7 +9,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Yuansfer_SDK.src.request.online
 {
-    public class ProcessRequest : YuanpayRequest<ProcessResponse>
+    public class OnlineProcessRequest : YuanpayRequest<OnlineProcessResponse>
     {
         public string paymentMethodNonce { get; set; } 
         public string paymentMethod { get; set; } 
@@ -48,9 +48,9 @@ namespace Yuansfer_SDK.src.request.online
         }
 
         //Handle response data
-        public override ProcessResponse convertResponse(string ret)
+        public override OnlineProcessResponse convertResponse(string ret)
         {
-            ProcessResponse response = new ProcessResponse();
+            OnlineProcessResponse response = new OnlineProcessResponse();
             JObject json = JObject.Parse(ret);
             if (json.GetValue("result") != null)
             {

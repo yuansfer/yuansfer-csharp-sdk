@@ -16,19 +16,22 @@ namespace Yuansfer_SDK.tests.payout
     {
         YuanpayClient client = new YuanpayV3Client(InitYuanpayConfig.initMerchantConfig());
 
-        PayoutCreateAccountRequest request = new PayoutCreateAccountRequest();
+        PayoutCreatePayeeRequest request = new PayoutCreatePayeeRequest();
 
         [TestMethod]
         public void Test1()
         {
-            request.accountType = "CARD";
-            request.accountTag = "001";
-            request.clientIp = "111,111,111,111";
-            request.customerNo = "TestNumber";
+            request.accountType = "PAYPAL";
+            request.accountTag = "1873701-2021083-1204401000";
+            request.clientIp = "108.54.147.204";
+            request.customerNo = "2000300192493982427803";
+            request.accountCountry = "US";
+            request.accountCurrency = "USD";
             request.ipnUrl = "http://zk-tys.yunkeguan.com/ttest/test";
             request.callbackUrl = "http://zk-tys.yunkeguan.com/ttest/test";
+            request.timestamp = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ");
 
-            PayoutCreateAccountResponse response = client.execute(request);
+            PayoutCreatePayeeResponse response = client.execute(request);
             Console.Write(JObject.FromObject(response));
             Assert.AreEqual("000100", response.retCode);
         }

@@ -10,21 +10,18 @@ using System;
 namespace Yuansfer_SDK.tests.transaction
 {
     [TestClass]
-    public class RefundTest
+    public class MixedQueryTest
     {
+        
         YuanpayClient client = new YuanpayV3Client(InitYuanpayConfig.initMerchantConfig());
 
-        RefundRequest request = new RefundRequest();
+        MixedQueryRequest request = new MixedQueryRequest();
 
         [TestMethod]
         public void Test1()
         {
-            request.refundAmount = "0.05";
-            request.currency = "USD";
-            request.settleCurrency = "USD";
-            request.transactionNo = "302589427810815037";
-
-            RefundResponse response = client.execute(request);
+            request.recordNo = "409439052428477189";
+            MixedQueryResponse response = client.execute(request);
             Console.Write(JObject.FromObject(response));
             Assert.AreEqual("000100", response.retCode);
         }

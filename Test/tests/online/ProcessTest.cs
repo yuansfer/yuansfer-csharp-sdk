@@ -14,7 +14,7 @@ namespace Yuansfer_SDK.tests.online
     {
         YuanpayClient client = new YuanpayV3Client(InitYuanpayConfig.initMerchantConfig());
 
-        ProcessRequest request = new ProcessRequest();
+        OnlineProcessRequest request = new OnlineProcessRequest();
 
         [TestMethod]
         public void Test1()
@@ -23,7 +23,7 @@ namespace Yuansfer_SDK.tests.online
             request.paymentMethodNonce = "";
             
 
-            ProcessResponse response = client.execute(request);
+            OnlineProcessResponse response = client.execute(request);
             Console.Write(JObject.FromObject(response));
             Assert.AreEqual("000100", response.retCode);
         }

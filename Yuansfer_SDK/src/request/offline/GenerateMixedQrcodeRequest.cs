@@ -5,24 +5,29 @@ using Yuansfer_SDK.src.response.offline;
 using Yuansfer_SDK.src.enums;
 using Yuansfer_SDK.src.exception;
 using Newtonsoft.Json.Linq;
+using Yuansfer_SDK.src.request;
 
-namespace Yuansfer_SDK.src.request.offline
+namespace Yuansfer_SDK.request.offline
 {
-    public class InstoreCreateTranQrcodeRequest : YuanpayRequest<InstoreCreateTranQrcodeResponse>
+    public class GenerateMixedQrcodeRequest : YuanpayRequest<GenerateMixedQrcodeResponse>
     {
-        public string amount { get; set; } //Transaction amount
+        public string saleAmount { get; set; } //Transaction amount
         public string currency { get; set; } //Currency type, ex:"USD","CNY"
         public string settleCurrency { get; set; } //SettleCurrency type, ex:"USD","CNY"
-        public string vendor { get; set; } //Transaction amount
         public string reference { get; set; } //Transaction amount
         public string ipnUrl { get; set; } //Transaction amount
-        public string needQrcode { get; set; } //Whether to generate qr code, default true, ex:"true","false",
+        public string description { get; set; }
+        public string note { get; set; }
+        public string needQrcode { get; set; } //Whether to generate qr code, default false, ex:"true","false",
         public int? timeout { get; set; } //Timeout in minutes
+        public string tax { get; set; }
+        public string tip { get; set; }
+        public string needTip { get; set; }
 
         protected override void dataValidate()
         {
             //Amount validation
-            ParamValidator.amountValidate("amount", amount);
+            ParamValidator.amountValidate("saleAmount", saleAmount);
 
             //Reference validation
             if (string.IsNullOrEmpty(reference))
@@ -51,31 +56,41 @@ namespace Yuansfer_SDK.src.request.offline
             {
                 throw new YuanpayException("data error: settleCurrency");
             }
+
         }
 
         protected override string getAPIUrl(string env)
         {
             string urlPrefix = getUrlPrefix(env);
-            string url = urlPrefix + RequestConstants.INSTORE_TRAN_QRCODE;
+            string url = urlPrefix + RequestConstants.GENERATE_MIXED_QRCODE;
             return url;
         }
 
-        public override InstoreCreateTranQrcodeResponse convertResponse(string ret)
+        public override GenerateMixedQrcodeResponse convertResponse(string ret)
         {
-            InstoreCreateTranQrcodeResponse response = new InstoreCreateTranQrcodeResponse();
+            GenerateMixedQrcodeResponse response = new GenerateMixedQrcodeResponse();
             JObject json = JObject.Parse(ret);
-            if (json.GetValue("ret_code") != null)
+            if (json.GetValue("HttpStatus") != null)
             {
-                response.retCode = json.GetValue("ret_code").ToString();
+                response.retCode = json.GetValue("HttpStatus").ToString();
+                response.retMsg = json.GetValue("HttpMessage").ToString();
             }
-            if (json.GetValue("ret_msg") != null)
+            else
             {
-                response.retMsg = json.GetValue("ret_msg").ToString();
+                if (json.GetValue("ret_code") != null)
+                {
+                    response.retCode = json.GetValue("ret_code").ToString();
+                }
+                if (json.GetValue("ret_msg") != null)
+                {
+                    response.retMsg = json.GetValue("ret_msg").ToString();
+                }
+                if (json.GetValue("result") != null)
+                {
+                    response.result = JObject.Parse(json.GetValue("result").ToString());
+                }
             }
-            if (json.GetValue("result") != null)
-            {
-                response.result =JObject.Parse(json.GetValue("result").ToString());
-            }
+
             return response;
         }
     }

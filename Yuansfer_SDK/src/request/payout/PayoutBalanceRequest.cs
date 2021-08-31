@@ -9,38 +9,42 @@ using Newtonsoft.Json.Linq;
 
 namespace Yuansfer_SDK.src.request.payout
 {
-    public class PayoutInquiryRequest : YuanpayRequest<PayoutInquiryResponse>
+    public class PayoutBalanceRequest : YuanpayRequest<PayoutBalanceResponse>
     {
-        public string invoiceId { get; set; } 
-
+        public string timestamp { get; set; }
+        public string currency { get; set; }
         //Data validation
         protected override void dataValidate()
         {
-
             //Reference validation
-            if (string.IsNullOrEmpty(invoiceId))
+            if (string.IsNullOrEmpty(timestamp))
             {
-                throw new YuanpayException("invoiceId is missing");
+                throw new YuanpayException("timestamp is missing");
             }
 
+            //Currency validation
+            if (string.IsNullOrEmpty(currency))
+            {
+                throw new YuanpayException("currency is missing");
+            }
         }
 
         //Get Api url
         protected override string getAPIUrl(string env)
         {
             string urlPrefix = getUrlPrefix(env);
-            string url = urlPrefix + RequestConstants.PAYOUT_INQUIRY;
+            string url = urlPrefix + RequestConstants.PAYOUT_BALANCE;
             return url;
         }
 
         //Handle response data
-        public override PayoutInquiryResponse convertResponse(string ret)
+        public override PayoutBalanceResponse convertResponse(string ret)
         {
-            PayoutInquiryResponse response = new PayoutInquiryResponse();
+            PayoutBalanceResponse response = new PayoutBalanceResponse();
             JObject json = JObject.Parse(ret);
-            if (json.GetValue("result") != null)
+            if (json.GetValue("balance") != null)
             {
-                response.result = JObject.Parse(json.GetValue("result").ToString());
+                response.result = JObject.Parse(json.GetValue("balance").ToString());
             }
             response.retCode = json.GetValue("ret_code").ToString();
             response.retMsg = json.GetValue("ret_msg").ToString();

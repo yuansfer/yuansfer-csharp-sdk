@@ -37,21 +37,20 @@ namespace Yuansfer_SDK.src.utils
         {
             try
             {
-                using(System.Security.Cryptography.MD5 md5 = System.Security.Cryptography.MD5.Create())
+                using (var md5Hash = System.Security.Cryptography.MD5.Create())
                 {
-                    //Convert string into hash bytes array
-                    byte[] inputBytes = Encoding.ASCII.GetBytes(str);
-                    byte[] hashBytes = md5.ComputeHash(inputBytes);
+                    // Byte array representation of source string
+                    var sourceBytes = Encoding.UTF8.GetBytes(str);
 
-                    //Convert bytes array into string
-                    StringBuilder sb = new StringBuilder();
-                    for(int i = 0; i < hashBytes.Length; i++)
-                    {
-                        sb.Append(hashBytes[i].ToString("x2"));
-                    }
-                    return sb.ToString();
+                    // Generate hash value(Byte Array) for input data
+                    var hashBytes = md5Hash.ComputeHash(sourceBytes);
 
+                    // Convert hash byte array to string
+                    var hash = BitConverter.ToString(hashBytes).Replace("-", string.Empty);
+
+                    return hash.ToLower();
                 }
+
             } catch (Exception e)
             {
                 Console.WriteLine(e.Message);

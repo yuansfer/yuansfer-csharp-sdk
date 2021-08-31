@@ -3,12 +3,12 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json.Linq;
 
 /**
- *  Payout create account response 
+ *  Customer create account response 
  **/ 
-namespace Yuansfer_SDK.src.response.payout
+namespace Yuansfer_SDK.src.response.customer
 {
     [DataContract]
-    public class PayoutCreateAccountResponse : YuanpayResponse
+    public class CustomerUpdateResponse : YuanpayResponse
     {
         [DataMember]
         public JObject result { get; set; }

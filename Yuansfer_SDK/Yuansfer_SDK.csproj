@@ -2,6 +2,19 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Version>3.0.0.3</Version>
+    <Description>1. Register Yuansfer customer api update to v2
+2. Some modification on Payee api
+3. Minor bug fix
+4. Rename reverse to cancel to align docs
+5. Add some new apis</Description>
+    <Copyright>Yuansfer</Copyright>
+    <PackageId>Yuansfer</PackageId>
+    <Authors>Yuansfer</Authors>
+    <Product>Yuansfer</Product>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <AssemblyVersion>3.0.0.3</AssemblyVersion>
+    <FileVersion>3.0.0.3</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Yuansfer_SDK.src.response.dataSearch;
+using Yuansfer_SDK.src.response.transaction;
 using Yuansfer_SDK.src.exception;
+using Yuansfer_SDK.src.enums;
 using Newtonsoft.Json.Linq;
 
-namespace Yuansfer_SDK.src.request.dataSearch
+/**
+ *  Payment Cancel request 
+ **/ 
+namespace Yuansfer_SDK.src.request.transaction
 {
-    public class TranQueryRequest : YuanpayRequest<TranQueryResponse>
+    public class CancelRequest : YuanpayRequest<CancelResponse>
     {
         public string transactionNo { get; set; } //Invoice number of transaction
         public string reference { get; set; } //Invoice number of transaction
@@ -17,24 +21,24 @@ namespace Yuansfer_SDK.src.request.dataSearch
             //TransactionNo and Reference validation
             if (string.IsNullOrEmpty(transactionNo) && string.IsNullOrEmpty(reference))
             {
-                throw new YuanpayException("transaction number and reference cannot be null at the same time");
+                throw new YuanpayException("transaction and reference cannot be null at the same time");
             }
             if (!string.IsNullOrEmpty(transactionNo) && !string.IsNullOrEmpty(reference))
             {
-                throw new YuanpayException("transaction number and reference cannot exist at the same time");
+                throw new YuanpayException("transaction and reference cannot exist at the same time");
             }
         }
 
         protected override string getAPIUrl(string env)
         {
             string urlPrefix = getUrlPrefix(env);
-            string url = urlPrefix + RequestConstants.TRAN_QUERY;
+            string url = urlPrefix + RequestConstants.CANCEL;
             return url;
         }
 
-        public override TranQueryResponse convertResponse(string ret)
+        public override CancelResponse convertResponse(string ret)
         {
-            TranQueryResponse response = new TranQueryResponse();
+            CancelResponse response = new CancelResponse();
             JObject json = JObject.Parse(ret);
             if (json.GetValue("result") != null)
             {

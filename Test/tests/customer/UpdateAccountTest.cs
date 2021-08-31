@@ -14,15 +14,18 @@ namespace Yuansfer_SDK.tests.customer
     {
         YuanpayClient client = new YuanpayV3Client(InitYuanpayConfig.initMerchantConfig());
 
-        UpdateAccountRequest request = new UpdateAccountRequest();
+        CustomerUpdateRequest request = new CustomerUpdateRequest();
 
         [TestMethod]
         public void Test1()
         {
-            request.customerNo = "2000305228244862935303";
-            request.timestamp = DateTime.UtcNow.ToString("yyyy-MM-ddThh:mm ttZ");
+            request.customerNo= "2000300192493982427803";
+            request.timestamp = DateTime.UtcNow.ToString("yyyy-MM-ddThh:mm:ttZ");
+            request.zip = "00000";
+            request.city = "Brooklyn";
+            request.countryCode = "CN";
 
-            UpdateAccountResponse response = client.execute(request);
+            CustomerUpdateResponse response = client.execute(request);
             Console.Write(JObject.FromObject(response));
             Assert.AreEqual("000100", response.retCode);
         }

@@ -19,8 +19,8 @@ namespace Yuansfer_SDK.tests.offline
         [TestMethod]
         public void Test1()
         {
-            request.transactionNo = "297553651236400592";
-            request.paymentBarcode = "134657274201045039";
+            request.transactionNo = "297553665731335321";
+            request.paymentBarcode = "791014426698";
             request.vendor = "paypal";
 
             InstorePayResponse response = client.execute(request);

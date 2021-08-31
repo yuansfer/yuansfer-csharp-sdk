@@ -8,10 +8,9 @@ using Newtonsoft.Json.Linq;
 namespace Yuansfer_SDK.src.response.customer
 {
     [DataContract]
-    public class RetrieveAccountResponse : YuanpayResponse
+    public class CustomerRegisterResponse : YuanpayResponse
     {
         [DataMember]
         public JObject result { get; set; }
-
     }
 }

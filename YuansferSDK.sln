@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2046
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yuansfer_SDK", "Yuansfer_SDK\Yuansfer_SDK.csproj", "{0722D474-DF74-40F1-AB47-A1A07EFCB1B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test", "Test\Test.csproj", "{DF509B77-1C0D-49C0-BB57-82437BBDE37D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{DF509B77-1C0D-49C0-BB57-82437BBDE37D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yuansfer_SDK", "Yuansfer_SDK\Yuansfer_SDK.csproj", "{B4246DED-AE7A-41F2-9056-ABD4C003FE48}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0722D474-DF74-40F1-AB47-A1A07EFCB1B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0722D474-DF74-40F1-AB47-A1A07EFCB1B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0722D474-DF74-40F1-AB47-A1A07EFCB1B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0722D474-DF74-40F1-AB47-A1A07EFCB1B7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DF509B77-1C0D-49C0-BB57-82437BBDE37D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DF509B77-1C0D-49C0-BB57-82437BBDE37D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF509B77-1C0D-49C0-BB57-82437BBDE37D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF509B77-1C0D-49C0-BB57-82437BBDE37D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4246DED-AE7A-41F2-9056-ABD4C003FE48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4246DED-AE7A-41F2-9056-ABD4C003FE48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4246DED-AE7A-41F2-9056-ABD4C003FE48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4246DED-AE7A-41F2-9056-ABD4C003FE48}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -16,14 +16,14 @@ namespace Yuansfer_SDK.tests.recurring
     {
         YuanpayClient client = new YuanpayV3Client(InitYuanpayConfig.initMerchantConfig());
 
-        UpdateRecurringRequest request = new UpdateRecurringRequest();
+        RecurringUpdateRequest request = new RecurringUpdateRequest();
 
         [TestMethod]
         public void Test1()
         {
             request.status = "";
             request.paymentCount = 1;
-            UpdateRecurringResponse response = client.execute(request);
+            RecurringUpdateResponse response = client.execute(request);
             Console.Write(JObject.FromObject(response));
             Assert.AreEqual("000100", response.retCode);
         }

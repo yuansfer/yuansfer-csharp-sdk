@@ -11,7 +11,7 @@ using Newtonsoft.Json.Linq;
  **/ 
 namespace Yuansfer_SDK.src.request.mobile
 {
-    public class ExpressPayRequest : YuanpayRequest<ExpressPayResponse>
+    public class ExpressPayRequest : YuanpayRequest<MobileExpressPayResponse>
     {
         public string reference { get; set; } //Transaction reference number
         public string amount { get; set; } //Currency amount
@@ -75,9 +75,9 @@ namespace Yuansfer_SDK.src.request.mobile
             return url;
         }
 
-        public override ExpressPayResponse convertResponse(string ret)
+        public override MobileExpressPayResponse convertResponse(string ret)
         {
-            ExpressPayResponse response = new ExpressPayResponse();
+            MobileExpressPayResponse response = new MobileExpressPayResponse();
             JObject json = JObject.Parse(ret);
             if (json.GetValue("result") != null)
             {

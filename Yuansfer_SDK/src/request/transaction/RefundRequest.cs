@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-using Yuansfer_SDK.src.response.dataSearch;
+using Yuansfer_SDK.src.response.transaction;
 using Yuansfer_SDK.src.exception;
 using Yuansfer_SDK.src.enums;
 using Newtonsoft.Json.Linq;
@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 /**
  *  Refund request 
  **/ 
-namespace Yuansfer_SDK.src.request.dataSearch
+namespace Yuansfer_SDK.src.request.transaction
 {
     public class RefundRequest : YuanpayRequest<RefundResponse>
     {

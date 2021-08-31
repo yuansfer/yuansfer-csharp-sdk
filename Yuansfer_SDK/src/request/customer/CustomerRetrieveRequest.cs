@@ -9,7 +9,7 @@ using Yuansfer_SDK.src.response.customer;
 
 namespace Yuansfer_SDK.src.request.customer
 {
-    public class RetrieveAccountRequest : YuanpayRequest<RetrieveAccountResponse>
+    public class CustomerRetrieveRequest : YuanpayRequest<CustomerRetrieveResponse>
     {
         public string customerCode { get; set; } //Customer code
         public string timestamp { get; set; }
@@ -47,9 +47,9 @@ namespace Yuansfer_SDK.src.request.customer
         }
 
         //Handle response data
-        public override RetrieveAccountResponse convertResponse(string ret)
+        public override CustomerRetrieveResponse convertResponse(string ret)
         {
-            RetrieveAccountResponse response = new RetrieveAccountResponse();
+            CustomerRetrieveResponse response = new CustomerRetrieveResponse();
             JObject json = JObject.Parse(ret);
             if (json.GetValue("customer") != null)
             {

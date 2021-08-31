@@ -9,7 +9,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Yuansfer_SDK.src.request.customer
 {
-    public class UpdateAccountRequest : YuanpayRequest<UpdateAccountResponse>
+    public class CustomerRegisterRequest : YuanpayRequest<CustomerRegisterResponse>
     {
         public string timestamp { get; set; }
         public string city { get; set; } //City
@@ -28,37 +28,54 @@ namespace Yuansfer_SDK.src.request.customer
         public string street { get; set; } //Address
         public string street2 { get; set; } //
         public string zip { get; set; } //Zipcode
-        public string customerNo { get; set; }
+        public string profileType { get; set; }
 
         //Data validation
         protected override void dataValidate()
         {
-            if (string.IsNullOrEmpty(customerNo))
-            {
-                throw new YuanpayException("customerNo is missing");
-            }
             if (string.IsNullOrEmpty(timestamp))
             {
                 throw new YuanpayException("timestamp is missing");
             }
+
+            if (string.IsNullOrEmpty(email))
+            {
+                throw new YuanpayException("email is missing");
+            }
+
+            if (string.IsNullOrEmpty(firstName))
+            {
+                throw new YuanpayException("firstName is missing");
+            }
+
+            if (string.IsNullOrEmpty(lastName))
+            {
+                throw new YuanpayException("lastName is missing");
+            }
+
+            if (string.IsNullOrEmpty(countryCode))
+            {
+                throw new YuanpayException("countryCode is missing");
+            }
+
         }
 
         //Get Api url
         protected override string getAPIUrl(string env)
         {
             string urlPrefix = getUrlPrefix(env);
-            string url = urlPrefix + RequestConstants.CUSTOMER_UPDATE_ACCOUNT;
+            string url = urlPrefix + RequestConstants.CUSTOMER_REGISTER_CUSTOMER;
             return url;
         }
 
         //Handle response data
-        public override UpdateAccountResponse convertResponse(string ret)
+        public override CustomerRegisterResponse convertResponse(string ret)
         {
-            UpdateAccountResponse response = new UpdateAccountResponse();
+            CustomerRegisterResponse response = new CustomerRegisterResponse();
             JObject json = JObject.Parse(ret);
-            if (json.GetValue("result") != null)
+            if (json.GetValue("customer") != null)
             {
-                response.result = JObject.Parse(json.GetValue("result").ToString());
+                response.result = JObject.Parse(json.GetValue("customer").ToString());
             }
             response.retCode = json.GetValue("ret_code").ToString();
             response.retMsg = json.GetValue("ret_msg").ToString();

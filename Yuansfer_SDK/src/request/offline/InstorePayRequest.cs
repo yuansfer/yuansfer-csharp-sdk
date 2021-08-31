@@ -54,9 +54,9 @@ namespace Yuansfer_SDK.src.request.offline
         {
             InstorePayResponse response = new InstorePayResponse();
             JObject json = JObject.Parse(ret);
-            if (json.GetValue("transaction") != null)
+            if (json.GetValue("result") != null)
             {
-                response.result = JObject.Parse(json.GetValue("transaction").ToString());
+                response.result = JObject.Parse(json.GetValue("result").ToString());
             }
             response.retCode = json.GetValue("ret_code").ToString();
             response.retMsg = json.GetValue("ret_msg").ToString();

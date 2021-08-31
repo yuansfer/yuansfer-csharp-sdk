@@ -1,18 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
-using Newtonsoft.Json.Linq;
 using System.Text;
+using Newtonsoft.Json.Linq;
 
-/**
- *  RefundBody Response
- **/ 
-namespace Yuansfer_SDK.src.response.dataSearch
+namespace Yuansfer_SDK.src.response.recurring
 {
     [DataContract]
-    public class RefundResponse : YuanpayResponse
+    public class RecurringUpdateResponse : YuanpayResponse
     {
-        [DataMember]
         public JObject result { get; set; }
     }
 }

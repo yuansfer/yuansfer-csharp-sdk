@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 /**
  *  Constant Request Variable
  **/ 
@@ -19,7 +16,7 @@ namespace Yuansfer_SDK.src.request
          * online api suffix
          */
         public const string ONLINE_SECUREPAY = "/online/v3/secure-pay";
-        public const string UPDATE_RECURRING = "/creditpay/v3/update-recurring";
+        public const string RECURRING_UPDATE = "/creditpay/v3/update-recurring";
         public const string RECURRING_APPLY_TOKEN = "/auto-debit/v3/apply-token";
         public const string RECURRING_CONSULT = "/auto-debit/v3/consult";
         public const string RECURRING_PAY = "/auto-debit/v3/pay";
@@ -35,15 +32,19 @@ namespace Yuansfer_SDK.src.request
         public const string INSTORE_CASHIER_ADD = "/app-instore/v3/cashier-add";
         public const string INSTORE_AUTH_CAPTURE = "/app-instore/v3/auth-capture";
         public const string INSTORE_AUTH_UNFREEZE = "/app-instore/v3/auth-unfreeze";
+        public const string GENERATE_MIXED_QRCODE = "/appUnicode/generateMixedCode";
 
         /*
          * payout api suffix
          */
         public const string PAYOUT_PAY = "/v3/payouts/pay";
-        public const string PAYOUT_CREATE_ACCOUNT = "/v1/customers/account/create";
+        public const string PAYOUT_BALANCE = "/v3/payouts/balance";
+        public const string PAYOUT_INQUIRY = "/v3/payouts/inquiry";
+        public const string PAYOUT_CREATE_ACCOUNT = "/v2/customers/account/create";
+        public const string PAYOUT_RETRIEVE = "/v2/customers/account/retrieve";
 
         /*
-         * payout api suffix
+         * customer api suffix
          */
         public const string CUSTOMER_REGISTER_CUSTOMER = "/v1/customers/create";
         public const string CUSTOMER_RETRIEVE_ACCOUNT = "/v1/customers/retrieve";
@@ -56,15 +57,17 @@ namespace Yuansfer_SDK.src.request
         public const string EXPRESS_PAY = "/micropay/v3/express-pay";
 
         /*
-         * data-search
+         * transaction
          */
         public const string REFUND = "/app-data-search/v3/refund";
-        public const string REVERSE = "/app-data-search/v3/cancel";
+        public const string CANCEL = "/app-data-search/v3/cancel";
         public const string TRAN_QUERY = "/app-data-search/v3/tran-query";
         public const string TRANS_LIST = "/app-data-search/v3/trans-list";
         public const string SETTLE_LIST = "/app-data-search/v3/settle-list";
         public const string WITHDRAWAL_LIST = "/app-data-search/v3/withdrawal-list";
         public const string DATA_STATUS = "/app-data-search/v3/data-status";
+        public const string MIXED_QUERY = "/appUnicode/mixedQuery";
+        public const string MIXED_CANCEL = "/appUnicode/mixedCancel";
 
         /*
          * Pre auth

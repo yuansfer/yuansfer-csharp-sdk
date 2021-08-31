@@ -1,16 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Web;
 using Newtonsoft.Json.Linq;
 
-namespace Yuansfer_SDK.src.response.online
+/**
+ *  Customer retrieve response 
+ **/ 
+namespace Yuansfer_SDK.src.response.customer
 {
     [DataContract]
-    public class ProcessResponse : YuanpayResponse
+    public class CustomerRetrieveResponse : YuanpayResponse
     {
         [DataMember]
         public JObject result { get; set; }
+
     }
 }

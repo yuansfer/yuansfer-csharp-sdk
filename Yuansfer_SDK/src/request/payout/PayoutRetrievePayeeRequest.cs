@@ -9,14 +9,12 @@ using Newtonsoft.Json.Linq;
 
 namespace Yuansfer_SDK.src.request.payout
 {
-    public class PayoutCreateAccountRequest : YuanpayRequest<PayoutCreateAccountResponse>
+    public class PayoutRetrievePayeeRequest : YuanpayRequest<PayoutRetrievePayeeResponse>
     {
         public string accountType { get; set; } //User account type, possible value: "CARD", "PAYPAL", "BANK_ACCOUNT", "PREPAID_CARD", "ALIPAY"
-        public string customerNo { get; set; } //Company Name
+        public string customerNo { get; set; } //
         public string accountTag { get; set; }
-        public string ipnUrl { get; set; }
-        public string callbackUrl { get; set; }
-        public string clientIp { get; set; }
+        public string timestamp { get; set; }
 
         //Data validation
         protected override void dataValidate()
@@ -36,10 +34,7 @@ namespace Yuansfer_SDK.src.request.payout
                 throw new YuanpayException("accountTag is missing");
             }
 
-            if (string.IsNullOrEmpty(clientIp))
-            {
-                throw new YuanpayException("clientIp is missing");
-            }
+
 
         }
 
@@ -47,14 +42,14 @@ namespace Yuansfer_SDK.src.request.payout
         protected override string getAPIUrl(string env)
         {
             string urlPrefix = getUrlPrefix(env);
-            string url = urlPrefix + RequestConstants.PAYOUT_CREATE_ACCOUNT;
+            string url = urlPrefix + RequestConstants.PAYOUT_RETRIEVE;
             return url;
         }
 
         //Handle response data
-        public override PayoutCreateAccountResponse convertResponse(string ret)
+        public override PayoutRetrievePayeeResponse convertResponse(string ret)
         {
-            PayoutCreateAccountResponse response = new PayoutCreateAccountResponse();
+            PayoutRetrievePayeeResponse response = new PayoutRetrievePayeeResponse();
             JObject json = JObject.Parse(ret);
             if (json.GetValue("result") != null)
             {

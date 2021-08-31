@@ -25,15 +25,14 @@ namespace Yuansfer_SDK.tests.online
             request.amount = "0.01";
             request.currency = "USD";
             request.settleCurrency = "USD";
-            request.vendor = "alipay";
+            request.vendor = "unionpay";
             request.terminal = "ONLINE";
-            request.reference = "21111111100233113121";
-            request.ipnUrl = "https://zk-test.com/api/api_pay_yuansfer";
-            request.callbackUrl = "https://google.com";
+            request.reference = DateTime.Now.ToString();
+            request.ipnUrl = "https://datatuned.com/api/api_pay_yuansfer";
+            request.callbackUrl = "https://auth.datatuned.com/index.php?client=dev&pg=yuansfer_response&transactionId={transactionId}&status={status}&amount={amount}&time={time}&reference={reference}&note={note}&cl=dev";
             request.description = "dev";
-            request.note = "this is a test note from shawn";
+            request.note = "486363856";
             request.timeout = "120";
-            
 
             OnlineSecurepayResponse response = client.execute(request);
             Console.Write(JObject.FromObject(response));

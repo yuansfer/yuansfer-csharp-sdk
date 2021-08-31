@@ -6,15 +6,16 @@ using Yuansfer_SDK.src.request.offline;
 using Yuansfer_SDK.src.response.offline;
 using Newtonsoft.Json.Linq;
 using System;
+using Yuansfer_SDK.request.offline;
 
 namespace Yuansfer_SDK.tests.offline
 {
     [TestClass]
-    public class InstoreCreateTranQrcodeTest
+    public class GenerateMixedQrcodeTest
     {
         YuanpayClient client = new YuanpayV3Client(InitYuanpayConfig.initMerchantConfig());
 
-        InstoreCreateTranQrcodeRequest request = new InstoreCreateTranQrcodeRequest();
+        GenerateMixedQrcodeRequest request = new GenerateMixedQrcodeRequest();
 
         [TestMethod]
         public void Test1()
@@ -32,14 +33,19 @@ namespace Yuansfer_SDK.tests.offline
                 "verifySign": "86c13cc31a890d581f0445037a38784a"
               }*/
 
-            request.amount = "0.01";
+            request.saleAmount = "66.66";
             request.currency = "USD";
             request.settleCurrency = "USD";
-            request.vendor = "paypal";
             request.needQrcode = "true";
             request.reference = new Random().Next(0, 1000000000).ToString();
+            request.note = "This is note";
+            request.description = "This is description";
+            request.ipnUrl = "http://zk-tys.yunkeguan.com/ttest/testt";
+            request.tax = "0.01";
+            request.tip = "0.01";
+            request.needTip = "false";
 
-            InstoreCreateTranQrcodeResponse response = client.execute(request);
+            GenerateMixedQrcodeResponse response = client.execute(request);
             Console.Write(JObject.FromObject(response));
             Assert.AreEqual("000100", response.retCode);
         }

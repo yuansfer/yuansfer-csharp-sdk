@@ -4,10 +4,13 @@ using System.Text;
 using Newtonsoft.Json.Linq;
 using System.Runtime.Serialization;
 
-namespace Yuansfer_SDK.src.response.mobile
+/**
+ *  Mixed Qrc Transaction Cancel response 
+ **/
+namespace Yuansfer_SDK.src.response.transaction
 {
     [DataContract]
-    public class ExpressPayResponse : YuanpayResponse
+    public class MixedCancelResponse : YuanpayResponse
     {
         [DataMember]
         public JObject result { get; set; }
